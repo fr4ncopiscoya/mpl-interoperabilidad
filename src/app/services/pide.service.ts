@@ -13,16 +13,6 @@ export class PideService {
 
   constructor() { }
 
-  // getReniec(data: any) {
-  //   return this.http
-  //     .post(`${environment.apiBackend}/pide/sel-reniec`, data)
-  //     .pipe(
-  //       map((data) => {
-  //         return data;
-  //       })
-  //     );
-  // }
-
   getReniec(data: any): Observable<any> {
     return this.http.post(`${environment.apiBackend}/pide/sel-reniec`, data);
   }
@@ -30,15 +20,20 @@ export class PideService {
     return this.http.post(`${environment.apiBackend}/pide/sel-cextranjeria`, data);
   }
 
-  // getReniec(): Observable<Reniec> {
-  //   return this.http.get<Reniec>(`${environment.apiBackend}/sel-reniec/`, {
-  //     params: {
-  //       nuDniConsulta: '74848949',
-  //       nuDniUsuario: '25767128',
-  //       nuRucUsuario: '20131377062',
-  //       password: 'MPL@2025',
-  //       out: 'json'
-  //     }
-  //   });
-  // }
+  // ===== SUNARP =====
+  getRegistroVehicular(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-rvehicular`, data);
+  }
+  getBienesPerNatural(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-bienespernatural`, data);
+  }
+  getBienesPerJuridica(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-bienesperjuridica`, data);
+  }
+
+  // ===== SUNEDU =====
+  getSunedu(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-sunedu`, data);
+  }
+
 }

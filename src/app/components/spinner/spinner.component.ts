@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-spinner',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './spinner.component.html',
-  styleUrl: './spinner.component.css'
+  styleUrls: ['./spinner.component.css']
 })
 export class SpinnerComponent {
-
+  @Input() visible: boolean = false;
 }

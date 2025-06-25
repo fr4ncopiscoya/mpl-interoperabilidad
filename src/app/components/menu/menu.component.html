@@ -1,3 +1,4 @@
+<!-- ========== App Menu ========== -->
 <div class="app-menu navbar-menu">
     <!-- LOGO -->
     <div class="navbar-brand-box">
@@ -17,52 +18,124 @@
                 <img src="assets/images/logo-light.png" alt="" height="26">
             </span>
         </a>
-        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
+        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+            id="vertical-hover">
             <i class="ri-record-circle-line"></i>
         </button>
     </div>
 
-    <div id="scrollbar" data-simplebar="init" class="h-100 simplebar-scrollable-y"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px;">
+    <div id="scrollbar">
         <div class="container-fluid">
 
             <div id="two-column-menu">
             </div>
-            <ul class="navbar-nav" id="navbar-nav" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">
-    
+            <ul class="navbar-nav" id="navbar-nav">
+
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                 <li class="nav-item">
-                    <a [routerLink]="['/pide/inicio']" routerLinkActive="active" class="nav-link menu-link" aria-expanded="false"> <i class="bi bi-speedometer2"></i> <span data-key="t-dashboard">Inicio</span> </a>
+                    <a href="index.html" class="nav-link menu-link"> <i class="bi bi-speedometer2"></i> <span
+                            data-key="t-dashboard">Inicio</span> </a>
                 </li>
 
-                <li class="menu-title"><i class="ri-more-fill" aria-expanded="false"></i> <span data-key="t-pages">Pages</span></li>
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Pages</span></li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
-                        <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Identificación</span>
+                    <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarAuth">
+                        <i class="bi bi-person-circle"></i> <span data-key="t-authentication">Identificación</span>
                     </a>
-                    <div class="menu-dropdown collapse" id="sidebarPages" style="">
+                    <div class="collapse menu-dropdown" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a [routerLink]="['/pide/reniec']" routerLinkActive="active" class="nav-link" data-key="t-starter"> Reniec </a>
+                                <a [routerLink]="['/pide/reniec']" routerLinkActive="active" class="nav-link"
+                                    data-key="t-starter"> Reniec </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages-team.html" class="nav-link" data-key="t-team"> Carnet Extranjeria </a>
+                                <a [routerLink]="['/pide/cextranjeria']" routerLinkActive="active" class="nav-link"
+                                    data-key="t-starter"> Carnet de Extranjeria</a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="widgets.html" aria-expanded="false">
+                    <a class="nav-link menu-link" href="#sidebarProperties" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarProperties">
+                        <i class="bi bi-journal-medical"></i> <span data-key="t-properties">Propiedades</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarProperties">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="#sidebarSunarp" class="nav-link" data-bs-toggle="collapse" role="button"
+                                    aria-expanded="false" aria-controls="sidebarSunarp" data-key="t-signin"> Sunarp
+                                </a>
+                                <div class="collapse menu-dropdown" id="sidebarSunarp">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/pide/sunarp/bienes']" class="nav-link" data-key="t-basic">
+                                                Titularidad Bienes
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/pide/sunarp/vehicular']" class="nav-link" data-key="t-basic-2">
+                                                Registro Vehicular</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a [routerLink]="['/pide/sunedu']" routerLinkActive="active" class="nav-link"
+                                    data-key="t-starter"> Sunedu </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarRecord" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarRecord">
+                        <i class="bi bi-incognito"></i> <span data-key="t-pages">Antecedentes</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarRecord">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="#sidebarCriminalRecord" class="nav-link" data-bs-toggle="collapse" role="button"
+                                    aria-expanded="false" aria-controls="sidebarCriminalRecord" data-key="t-signin"> Antecedentes Penales
+                                </a>
+                                <div class="collapse menu-dropdown" id="sidebarCriminalRecord">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <a href="auth-signin-basic.html" class="nav-link" data-key="t-basic">
+                                                Consulta DNI
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="auth-signin-basic-2.html" class="nav-link" data-key="t-basic-2">
+                                                Consulta Nombre</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages-team.html" class="nav-link" data-key="t-team"> Team </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="widgets.html">
                         <i class="bi bi-hdd-stack"></i> <span data-key="t-widgets">Widgets</span>
                     </a>
                 </li>
 
-
-            </div></div></div></div><div class="simplebar-placeholder" style="width: 249px; height: 1183px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div><div class="simplebar-track simplebar-horizontal"><div class="simplebar-scrollbar"></div></div><div class="simplebar-track simplebar-vertical"><div class="simplebar-scrollbar"></div></div></ul>
+            </ul>
         </div>
         <!-- Sidebar -->
-    <!-- </div></div></div></div><div class="simplebar-placeholder" style="width: 249px; height: 1183px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 522px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div> -->
+    </div>
 
     <div class="sidebar-background"></div>
 </div>
+
+<!-- Vertical Overlay-->
+<div class="vertical-overlay"></div>

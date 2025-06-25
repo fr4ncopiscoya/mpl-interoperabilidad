@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0">REGISTRO DE BIENES</h4>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row mb-sm-4">
+            <div class="col-md-3">
+                <label for="validationDefault04" class="form-label">Tipo Persona</label>
+                <select class="form-select" (change)="changeTipoPersona($any($event.target).value)">
+                    <option value="N">Persona Natural</option>
+                    <option value="J">Persona Jurídica</option>
+                </select>
+            </div>
+            <ng-container *ngIf="tipoPersona() === 'N'">
+                <div class="col-md-2">
+                    <label class="form-label">Ap.Paterno</label>
+                    <input type="text" class="form-control" [value]="apePaterno()"
+                        (input)="apePaterno.set($any($event.target).value.toUpperCase())">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Ap.Materno</label>
+                    <input type="text" class="form-control" [value]="apeMaterno()"
+                        (input)="apeMaterno.set($any($event.target).value.toUpperCase())">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Nombres</label>
+                    <input type="text" class="form-control" [value]="nombres()"
+                        (input)="nombres.set($any($event.target).value.toUpperCase())">
+                </div>
+            </ng-container>
+            <ng-container *ngIf="tipoPersona() === 'J'">
+                <div class="col-md-7">
+                    <label class="form-label">Raz.Social</label>
+                    <input type="text" class="form-control" [value]="razSocial()"
+                        (input)="razSocial.set($any($event.target).value.toUpperCase())">
+                </div>
+            </ng-container>
+            <div class="col-sm-2 d-flex justify-content-center align-items-end">
+                <button type="button" class="btn btn-primary btn-label" (click)="searchBienes()">
+                    <i class="ri-search-line label-icon align-middle fs-16 me-2"></i> Enviar
+                </button>
+            </div>
+            <!-- <div class="col-sm-7">
+                <app-result-alert></app-result-alert>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Card Table</h4>
+                    </div><!-- end card header -->
+
+                    <div class="card-body">
+                        <div id="table-card" class="table-card"></div>
+                    </div><!-- end card-body -->
+                </div><!-- end card -->
+            </div>
+            <!-- end col -->
+        </div>
+    </div>
+</div>

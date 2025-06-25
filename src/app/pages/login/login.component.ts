@@ -25,28 +25,13 @@ export default class LoginComponent {
       }
     })
   }
-
-  getReniec() {
-    const post = {
-      nuDniConsulta: '74848949'
-    };
-  
-    this.pideService.getReniec(post).subscribe({
-      next: (res) => {
-        console.log('Datos del DNI:', res);
-      },
-      error: (error) => {
-        console.error('Error en la petición:', error);
-      }
-    });
-  }
   
 
 
 
   constructor() {
-    this.getReniec();
-    this.getCarnetExtranjeria();
+    // this.getReniec();
+    // this.getCarnetExtranjeria();
     // Dispara la solicitud HTTP para que aparezca en la pestaña "Network"
     // this.pideService.getReniec().subscribe({
     //   next: () => {

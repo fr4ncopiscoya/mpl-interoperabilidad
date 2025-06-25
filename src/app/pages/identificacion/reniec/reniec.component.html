@@ -1,1 +1,72 @@
-<p>reniec works!</p>
+<div class="row">
+      <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                  <h4 class="mb-sm-0">RENIEC</h4>
+            </div>
+      </div>
+      <div class="container">
+            <div class="row mb-sm-4">
+                  <div class="col-sm-5">
+                        <div class="input-group input-group-lg">
+                              <input type="string" placeholder="Ingrese DNI..." class="form-control" aria-label="Recipient's username"
+                                    aria-describedby="button-addon2" #txtSearch>
+                              <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                    (click)="getReniec(txtSearch.value)">Buscar</button>
+                        </div>
+                  </div>
+                  <div class="col-sm-7">
+                        <app-result-alert></app-result-alert>
+                  </div>
+            </div>
+            <div class="content-data row mb-sm-3 p-3 border border-dark border-2">
+                  <div class="content-image col-5 d-flex justify-content-center align-items-center border border-dark">
+                        <img [src]="getFotoSrc()" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-7">
+                        <div class="row mb-sm-4">
+                              <div class="col">
+                                    <label for="valueInput" class="form-label">Nombres</label>
+                                    <input type="text" class="form-control" id="valueInput"
+                                          [value]="dataReniec()?.prenombres" disabled>
+                              </div>
+                              <div class="col">
+                                    <label for="valueInput" class="form-label">Apellido Paterno</label>
+                                    <input type="text" class="form-control" id="valueInput"
+                                          [value]="dataReniec()?.apPrimer" disabled>
+                              </div>
+                        </div>
+                        <div class="row mb-sm-4">
+                              <div class="col">
+                                    <label for="valueInput" class="form-label">Apellido Materno</label>
+                                    <input type="text" class="form-control" id="valueInput"
+                                          [value]="dataReniec()?.apSegundo" disabled>
+                              </div>
+                              <div class="col">
+                                    <label for="valueInput" class="form-label">Estado Civil</label>
+                                    <input type="text" class="form-control" id="valueInput"
+                                          [value]="dataReniec()?.estadoCivil" disabled>
+                              </div>
+                        </div>
+                        <div class="row mb-sm-4">
+                              <div class="col">
+                                    <label for="valueInput" class="form-label">Ubigeo</label>
+                                    <input type="text" class="form-control" id="valueInput"
+                                          [value]="dataReniec()?.ubigeo" disabled>
+                              </div>
+                              <div class="col">
+                                    <label for="valueInput" class="form-label">Restricción</label>
+                                    <input type="text" class="form-control" id="valueInput"
+                                          [value]="dataReniec()?.restriccion" disabled>
+                              </div>
+                        </div>
+                        <div class="row mb-sm-4">
+                              <div class="col">
+                                    <label for="valueInput" class="form-label">Dirección</label>
+                                    <input type="text" class="form-control" id="valueInput"
+                                          [value]="dataReniec()?.direccion" disabled>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</div>

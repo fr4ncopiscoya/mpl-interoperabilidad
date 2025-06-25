@@ -26,17 +26,22 @@
             ],
             "styles": [
               "src/assets/css/app.min.css",
-              "src/assets/css/bootstrap.min.css",
               "src/assets/css/icons.min.css",
+              "src/assets/css/bootstrap.min.css",
               "src/assets/css/custom.min.css",
+              "src/assets/libs/leaflet/leaflet.css",
               "src/styles.css"
             ],
             "scripts": [
               "/src/assets/js/app.js",
+              "/src/assets/js/pages/gridjs.init.js",
+              "/src/assets/libs/gridjs/gridjs.umd.js",
+              "/src/assets/js/layout.js",
+              "/src/assets/libs/simplebar/simplebar.min.js",
+              "/src/assets/libs/leaflet/leaflet.js",
+              "/src/assets/libs/jsvectormap/js/jsvectormap.min.js",
               "/src/assets/libs/bootstrap/js/bootstrap.bundle.min.js",
               "/src/assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js",
-              "/src/assets/libs/leaflet/leaflet.js",
-              "/src/assets/js/layout.js",
               "/src/assets/js/plugins.js"
             ]
           },
