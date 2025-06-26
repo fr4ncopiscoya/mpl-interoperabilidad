@@ -34,6 +34,20 @@ export const routes: Routes = [
                 loadComponent: () => import('./pages/propiedades/sunedu/sunedu.component')
             },
 
+            //===== ANTECEDENTES =====
+            {
+                path:'antecedentes/penales',
+                loadComponent: () => import('./pages/antecedentes/penales/penales.component')
+            },
+            {
+                path:'antecedentes/policiales',
+                loadComponent: () => import('./pages/antecedentes/policiales/policiales.component')
+            },
+            {
+                path:'antecedentes/judiciales',
+                loadComponent: () => import('./pages/antecedentes/judiciales/judiciales.component')
+            },
+
 
             {
                 path:'**',

@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { PideService } from '../../../../services/pide.service';
-import { SpinnerService } from '../../../../services/spinner.service';
 import { CommonModule } from '@angular/common';
+import { GridService } from '../../../../services/grid.service';
 
 @Component({
   selector: 'app-bienes',
@@ -11,13 +11,12 @@ import { CommonModule } from '@angular/common';
 })
 export default class BienesComponent {
 
+  DATATABLE_ID = 'table-card';
 
-  constructor(
-    private pideService: PideService,
-    private spinnerService: SpinnerService
-  ) {
+  gridInstance: any;
+  columns = signal<string[]>([]);
 
-  }
+  dataBienes = signal<any[][]>([])
 
   tipoPersona = signal<string>('N');
   apePaterno = signal<string>('');
@@ -30,6 +29,7 @@ export default class BienesComponent {
   changeTipoPersona(value: string) {
     this.tipoPersona.set(value);
     this.resetFields();
+    this.gridService.destroy(this.DATATABLE_ID);
   }
 
   resetFields() {
@@ -39,16 +39,29 @@ export default class BienesComponent {
     this.razSocial.set('');
   }
 
-  searchBienes(){
-    if(this.tipoPersona() === 'N'){
-      console.log('natural');
+  searchBienes() {
+    if (this.tipoPersona() === 'N') {
       this.getBienesPerNatural()
-    }else{
-      console.log('juridica');
+    } else {
       this.getBienesPerJuridica()
     }
   }
 
+  constructor(
+    private pideService: PideService,
+    private gridService: GridService,
+  ) {
+    effect(() => {
+      const data = this.dataBienes();
+      const columns = this.columns();
+
+      if (data.length > 0) {
+        this.gridService.destroy(this.DATATABLE_ID);
+        this.gridService.render(this.DATATABLE_ID, columns, data);
+      }
+    }
+    )
+  }
 
   getBienesPerNatural() {
     const post = {
@@ -58,16 +71,42 @@ export default class BienesComponent {
       nombres: this.nombres(),
     }
 
-    console.log('post: ', post);
+    this.gridService.destroy(this.DATATABLE_ID);
 
+    this.columns.set([
+      "N°Partida", "Ap.Paterno",
+      "Ap.Materno", "Nombre", "Tip.Doc",
+      "N°Doc", "Dirección", "Estado", "Libro", "N°Placa",
+      "Oficina", "Registro", "Zona"
+    ]);
 
     this.pideService.getBienesPerNatural(post).subscribe({
       next: (res) => {
-        console.log('res?', res);
+        const personasRaw = res.buscarTitularidadSIRSARPResponse?.respuestaTitularidad?.respuestaTitularidad || {};
+        const personas = Array.isArray(personasRaw) ? personasRaw : [personasRaw];
+
+
+        const formatted = personas.map((p: any) => [
+          p.numeroPartida || '',
+          p.apMaterno || '',
+          p.apPaterno || '',
+          p.nombre || '',
+          p.tipoDocumento || '',
+          p.numeroDocumento || '',
+          p.direccion || '',
+          p.estado || '',
+          p.libro || '',
+          p.numeroPlaca || '',
+          p.oficina || '',
+          p.registro || '',
+          p.zona || '',
+        ])
+
+        this.dataBienes.set(formatted);
       },
       error: (error) => {
         console.log('error: ', error);
-
+        this.dataBienes.set([]);
       }
     })
   }
@@ -76,13 +115,33 @@ export default class BienesComponent {
     const post = {
       razonSocial: this.razSocial()
     }
+
+    this.gridService.destroy(this.DATATABLE_ID);
+
+    this.columns.set([
+      "N°Partida", "Denominacion",
+      "Oficina", "Tipo", "Zona",
+    ]);
+
     this.pideService.getBienesPerJuridica(post).subscribe({
       next: (res) => {
-        console.log('res?', res);
+        const personasRaw = res.personaJuridica.resultado || {};
+        const personas = Array.isArray(personasRaw) ? personasRaw : [personasRaw];
+
+        const formatted = personas.map((p: any) => [
+          p.partida || '',
+          p.denominacion || '',
+          p.oficina || '',
+          p.tipo || '',
+          p.zona || '',
+        ])
+
+        this.gridService.destroy(this.DATATABLE_ID);
+
+        this.dataBienes.set(formatted);
       },
       error: (error) => {
         console.log('error: ', error);
-
       }
     })
   }
