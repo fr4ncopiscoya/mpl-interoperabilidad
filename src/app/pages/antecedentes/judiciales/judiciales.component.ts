@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { PideService } from '../../../services/pide.service';
 
 @Component({
   selector: 'app-judiciales',
@@ -7,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrl: './judiciales.component.css'
 })
 export default class JudicialesComponent {
+
+  apePaterno = signal<string>('');
+  apeMaterno = signal<string>('');
+  nombre = signal<string>('');
+
+  constructor(private pideService:PideService){
+
+  }
+
+  searchAntJudiciales(){
+    
+  }
 
 }

@@ -1,29 +1,55 @@
 <div class="row">
       <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                  <h4 class="mb-sm-0">CARNET DE EXTRANJERÍA</h4>
+                  <h4 class="mb-sm-0">CARNET DE EXTRANJERIA</h4>
             </div>
       </div>
-      <div class="container">
-            <!-- <div class="row mb-sm-4">
+      <div class="">
+            <div class="row mb-sm-4">
                   <div class="col-sm-5">
                         <div class="input-group input-group-lg">
-                              <input type="string" placeholder="Ingrese DNI..." class="form-control" aria-label="Recipient's username"
-                                    aria-describedby="button-addon2" #txtSearch>
+                              <input type="string" placeholder="Ingrese CEE..." class="form-control" maxlength="9"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2" #txtSearch>
                               <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                                    (click)="getReniec(txtSearch.value)">Buscar</button>
+                                    (click)="getCExtranjeria(txtSearch.value)">Buscar</button>
                         </div>
                   </div>
                   <div class="col-sm-7">
                         <app-result-alert></app-result-alert>
                   </div>
             </div>
-            <div class="row mb-sm-3 p-3">
-                  <div class="col-5 d-sm-flex justify-content-center align-items-center border border-dark">
-                        <img [src]="getFotoSrc()" class="img-fluid" alt="...">
-                  </div>
-                  <div class="col-7">
-                        <div class="row mb-sm-4">
+            <div class="row mb-sm-3">
+                  <div class="col-sm-12">
+                        <div class="card">
+                              <div class="card-header">
+                                    <h4 class="card-title mb-0">RESULTADOS</h4>
+                              </div>
+                              <div class="card-body">
+                                    <div class="row gy-4">
+                                          <div class="col">
+                                                <label for="valueInput" class="form-label">Ap.Paterno</label>
+                                                <input type="text" class="form-control" id="valueInput"
+                                                      [value]="dataExtranjeria()?.apepaterno" disabled>
+                                          </div>
+                                          <div class="col">
+                                                <label for="valueInput" class="form-label">Ap.Materno</label>
+                                                <input type="text" class="form-control" id="valueInput"
+                                                      [value]="dataExtranjeria()?.apematerno" disabled>
+                                          </div>
+                                          <div class="col">
+                                                <label for="valueInput" class="form-label">Nombres</label>
+                                                <input type="text" class="form-control" id="valueInput"
+                                                      [value]="dataExtranjeria()?.nombres" disabled>
+                                          </div>
+                                          <div class="col">
+                                                <label for="valueInput" class="form-label">Calidad Migratoria</label>
+                                                <input type="text" class="form-control" id="valueInput"
+                                                      [value]="dataExtranjeria()?.calmigratoria" disabled>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                        <!-- <div class="row mb-sm-4">
                               <div class="col">
                                     <label for="valueInput" class="form-label">Nombres</label>
                                     <input type="text" class="form-control" id="valueInput"
@@ -65,8 +91,8 @@
                                     <input type="text" class="form-control" id="valueInput"
                                           [value]="dataReniec()?.direccion" disabled>
                               </div>
-                        </div>
+                        </div> -->
                   </div>
-            </div> -->
+            </div>
       </div>
 </div>

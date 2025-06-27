@@ -37,6 +37,28 @@
                             data-key="t-dashboard">Inicio</span> </a>
                 </li>
 
+
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Admin</span></li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarAdmin" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarAdmin">
+                        <i class="bi bi-lock-fill"></i> <span data-key="t-authentication">Usuarios</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarAdmin">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a [routerLink]="['/pide/admin/gestion']" routerLinkActive="active" class="nav-link"
+                                    data-key="t-starter"> Mantenimiento </a>
+                            </li>
+                            <li class="nav-item">
+                                <a [routerLink]="['/pide/reniec']" routerLinkActive="active" class="nav-link"
+                                    data-key="t-starter"> Actualizar Credenciales Reniec </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Pages</span></li>
 
                 <li class="nav-item">
@@ -72,12 +94,14 @@
                                 <div class="collapse menu-dropdown" id="sidebarSunarp">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item">
-                                            <a [routerLink]="['/pide/sunarp/bienes']" class="nav-link" data-key="t-basic">
+                                            <a [routerLink]="['/pide/sunarp/bienes']" class="nav-link"
+                                                data-key="t-basic">
                                                 Titularidad Bienes
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a [routerLink]="['/pide/sunarp/vehicular']" class="nav-link" data-key="t-basic-2">
+                                            <a [routerLink]="['/pide/sunarp/vehicular']" class="nav-link"
+                                                data-key="t-basic-2">
                                                 Registro Vehicular</a>
                                         </li>
                                     </ul>
@@ -117,22 +141,19 @@
                                 </div>
                             </li> -->
                             <li class="nav-item">
-                                <a href="pages-team.html" class="nav-link" data-key="t-team"> Antecedentes Penales </a>
+                                <a [routerLink]="['/pide/antecedentes/policiales']" class="nav-link" data-key="t-team">
+                                    Antecedentes Policiales</a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages-team.html" class="nav-link" data-key="t-team"> Antecedentes Policiales</a>
+                                <a [routerLink]="['/pide/antecedentes/penales']" routerLink="active" class="nav-link"
+                                    data-key="t-team"> Antecedentes Penales </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages-team.html" class="nav-link" data-key="t-team"> Antecedentes Judiciales</a>
+                                <a [routerLink]="['/pide/antecedentes/judiciales']" class="nav-link" data-key="t-team">
+                                    Antecedentes Judiciales</a>
                             </li>
                         </ul>
                     </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="widgets.html">
-                        <i class="bi bi-hdd-stack"></i> <span data-key="t-widgets">Widgets</span>
-                    </a>
                 </li>
 
             </ul>

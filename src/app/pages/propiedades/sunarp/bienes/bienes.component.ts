@@ -29,7 +29,6 @@ export default class BienesComponent {
   changeTipoPersona(value: string) {
     this.tipoPersona.set(value);
     this.resetFields();
-    this.gridService.destroy(this.DATATABLE_ID);
   }
 
   resetFields() {
@@ -37,6 +36,7 @@ export default class BienesComponent {
     this.apeMaterno.set('');
     this.nombres.set('');
     this.razSocial.set('');
+    this.gridService.destroy(this.DATATABLE_ID);
   }
 
   searchBienes() {

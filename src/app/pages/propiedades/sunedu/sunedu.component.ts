@@ -16,7 +16,6 @@ import { GridService } from '../../../services/grid.service';
 export default class SuneduComponent {
 
   DATATABLE_ID = 'table-card';
-  gridInstance: any;
   message: string = 'NO HAY RESULTADOS';
 
   columns = signal<string[]>([]);
@@ -58,7 +57,7 @@ export default class SuneduComponent {
           if (codigo !== '00000') {
             this.message = errorMessage
             this.dataSunedu.set([]);
-            this.gridInstance.destroy();
+            this.gridService.destroy(this.DATATABLE_ID);
             return
           }
 
@@ -80,11 +79,13 @@ export default class SuneduComponent {
         error: (error) => {
           console.log('error: ', error);
           this.message = error
-          this.gridInstance.destroy();
+          this.dataSunedu.set([]);
+          this.gridService.destroy(this.DATATABLE_ID);
         }
       });
     } else {
-      return
+      this.dataSunedu.set([]);
+      this.gridService.destroy(this.DATATABLE_ID);
     }
   }
 }

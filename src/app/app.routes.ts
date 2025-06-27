@@ -48,6 +48,12 @@ export const routes: Routes = [
                 loadComponent: () => import('./pages/antecedentes/judiciales/judiciales.component')
             },
 
+            // ===== ADMIN =====
+            {
+                path:'admin/gestion',
+                loadComponent: () => import('./pages/admin/gestion/gestion.component')
+            },
+
 
             {
                 path:'**',

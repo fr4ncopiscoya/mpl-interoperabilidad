@@ -13,6 +13,13 @@ export class PideService {
 
   constructor() { }
 
+  // ===== ADMIN ===== 
+  getAllUsers(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-users`, data);
+  }
+
+
+  // ===== IDENTIFICACIÓN =====
   getReniec(data: any): Observable<any> {
     return this.http.post(`${environment.apiBackend}/pide/sel-reniec`, data);
   }
@@ -34,6 +41,21 @@ export class PideService {
   // ===== SUNEDU =====
   getSunedu(data: any): Observable<any> {
     return this.http.post(`${environment.apiBackend}/pide/sel-sunedu`, data);
+  }
+
+
+  // ===== ANTECEDENTES =====
+  getAPolicialNumDoc(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-antpol-numdoc`, data);
+  }
+  getAPolicialNomPatMat(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-antpol-nompatmat`, data);
+  }
+  getAPolicialNomPat(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-antpol-nompat`, data);
+  }
+  getAPolicialCodPer(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-antpol-codper`, data);
   }
 
 }

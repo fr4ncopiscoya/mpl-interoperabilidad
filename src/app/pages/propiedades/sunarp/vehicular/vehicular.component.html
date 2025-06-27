@@ -4,12 +4,13 @@
             <h4 class="mb-sm-0">REGISTRO VEHICULAR</h4>
         </div>
     </div>
-    <div class="container">
+    <div class="">
         <div class="row mb-sm-4">
             <div class="col-sm-5">
                 <div class="input-group input-group-lg">
                     <input type="string" placeholder="Ingrese Placa..." class="form-control"
-                        aria-label="Recipient's username" aria-describedby="button-addon2" #txtSearch (input)="txtSearch.value = txtSearch.value.toUpperCase()" maxlength="6" minlength="6">
+                        aria-label="Recipient's username" aria-describedby="button-addon2" #txtSearch
+                        (input)="txtSearch.value = txtSearch.value.toUpperCase()" maxlength="6" minlength="6">
                     <button class="btn btn-outline-primary" type="button" id="button-addon2"
                         (click)="getRegistroVehicular(txtSearch.value)">Buscar</button>
                 </div>
@@ -18,65 +19,71 @@
                 <app-result-alert></app-result-alert>
             </div>
         </div>
-        <div class="content-data row mb-sm-3 p-3 border border-dark border-2">
-            <div class="col-12">
-                <div class="row mb-sm-4">
-                    <div class="col">
-                        <label for="valueInput" class="form-label">Propietario(s)</label>
-                        <input type="text" class="form-control" [value]="propietarios().join(', ')"
-                            disabled>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">RESULTADOS</h4>
                     </div>
-                </div>
-                <div class="row mb-sm-4">
-                    <div class="col">
-                        <label for="valueInput" class="form-label">N° Placa</label>
-                        <input type="text" class="form-control" [value]="dataVehiculo()?.placa"
-                            disabled>
-                    </div>
-                    <div class="col">
-                        <label for="valueInput" class="form-label">N° Serie</label>
-                        <input type="text" class="form-control" [value]="dataVehiculo()?.serie"
-                            disabled>
-                    </div>
-                    <div class="col">
-                        <label for="valueInput" class="form-label">N° Vin</label>
-                        <input type="text" class="form-control" [value]="dataVehiculo()?.vin" disabled>
-                    </div>
-                </div>
-                <div class="row mb-sm-4">
-                    <div class="col">
-                        <label for="valueInput" class="form-label">N° Motor</label>
-                        <input type="text" class="form-control" [value]="dataVehiculo()?.nro_motor" disabled>
-                    </div>
-                    <div class="col">
-                        <label for="valueInput" class="form-label">Color</label>
-                        <input type="text" class="form-control" [value]="dataVehiculo()?.color"
-                            disabled>
-                    </div>
-                    <div class="col">
-                        <label for="valueInput" class="form-label">Marca</label>
-                        <input type="text" class="form-control" [value]="dataVehiculo()?.marca"
-                            disabled>
-                    </div>
-                </div>
-                <div class="row mb-sm-4">
-                    <div class="col">
-                        <label for="valueInput" class="form-label">Modelo</label>
-                        <input type="text" class="form-control" [value]="dataVehiculo()?.modelo"
-                            disabled>
-                    </div>
-                    <div class="col">
-                        <label for="valueInput" class="form-label">Estado</label>
-                        <input type="text" class="form-control" [value]="dataVehiculo()?.estado"
-                            disabled>
-                    </div>
-                    <div class="col">
-                        <label for="valueInput" class="form-label">Sede</label>
-                        <input type="text" class="form-control" [value]="dataVehiculo()?.sede"
-                            disabled>
+                    <div class="card-body">
+                        <div class="col-12">
+                            <div class="row mb-sm-4">
+                                <div class="col">
+                                    <label for="valueInput" class="form-label">Propietario(s)</label>
+                                    <input type="text" class="form-control" [value]="propietarios().join(', ')"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-sm-4">
+                                <div class="col">
+                                    <label for="valueInput" class="form-label">N° Placa</label>
+                                    <input type="text" class="form-control" [value]="dataVehiculo()?.placa" disabled>
+                                </div>
+                                <div class="col">
+                                    <label for="valueInput" class="form-label">N° Serie</label>
+                                    <input type="text" class="form-control" [value]="dataVehiculo()?.serie" disabled>
+                                </div>
+                                <div class="col">
+                                    <label for="valueInput" class="form-label">N° Vin</label>
+                                    <input type="text" class="form-control" [value]="dataVehiculo()?.vin" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-sm-4">
+                                <div class="col">
+                                    <label for="valueInput" class="form-label">N° Motor</label>
+                                    <input type="text" class="form-control" [value]="dataVehiculo()?.nro_motor"
+                                        disabled>
+                                </div>
+                                <div class="col">
+                                    <label for="valueInput" class="form-label">Color</label>
+                                    <input type="text" class="form-control" [value]="dataVehiculo()?.color" disabled>
+                                </div>
+                                <div class="col">
+                                    <label for="valueInput" class="form-label">Marca</label>
+                                    <input type="text" class="form-control" [value]="dataVehiculo()?.marca" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-sm-4">
+                                <div class="col">
+                                    <label for="valueInput" class="form-label">Modelo</label>
+                                    <input type="text" class="form-control" [value]="dataVehiculo()?.modelo" disabled>
+                                </div>
+                                <div class="col">
+                                    <label for="valueInput" class="form-label">Estado</label>
+                                    <input type="text" class="form-control" [value]="dataVehiculo()?.estado" disabled>
+                                </div>
+                                <div class="col">
+                                    <label for="valueInput" class="form-label">Sede</label>
+                                    <input type="text" class="form-control" [value]="dataVehiculo()?.sede" disabled>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- <div class="content-data row mb-sm-3 p-3 border border-dark border-2">
+
+        </div> -->
     </div>
 </div>
