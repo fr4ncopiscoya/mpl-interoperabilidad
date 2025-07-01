@@ -29,7 +29,7 @@ export default class SuneduComponent {
       const data = this.dataSunedu();
       const col = this.columns();
       if (data.length > 0) {
-        this.gridService.render(this.DATATABLE_ID, col, data)
+        this.gridService.render(this.DATATABLE_ID, col, data, 5)
         this.message = '';
       }
     });

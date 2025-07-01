@@ -7,7 +7,7 @@
                 <img src="assets/images/logo-sm.png" alt="" height="26">
             </span>
             <span class="logo-lg">
-                <img src="assets/images/logo-dark.png" alt="" height="26">
+                <img src="../../../assets/images/logo-mpl-black.png" class="w-100" alt="" height="100">
             </span>
         </a>
         <a href="index.html" class="logo logo-light">
@@ -30,6 +30,93 @@
             <div id="two-column-menu">
             </div>
             <ul class="navbar-nav" id="navbar-nav">
+                <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link menu-link">
+                        <i class="bi bi-speedometer2"></i>
+                        <span data-key="t-dashboard">Inicio</span>
+                    </a>
+                </li>
+
+                <!-- ADMIN -->
+                <ng-container *ngIf="groupedMenus()['Usuarios']?.length">
+                    <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Admin</span></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarAdmin" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarAdmin">
+                            <i class="bi bi-lock-fill"></i>
+                            <span data-key="t-authentication">Usuarios</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarAdmin">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item" *ngFor="let item of groupedMenus()['Usuarios']">
+                                    <a [routerLink]="[item.RUTA]" routerLinkActive="active" class="nav-link"
+                                        data-key="t-starter">
+                                        {{ item.DESCRIPCION }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ng-container>
+
+                <!-- PAGES -->
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Pages</span></li>
+
+                <ng-container *ngFor="let group of groupedMenus() | keyvalue">
+                    <ng-container *ngIf="group.key !== 'Usuarios'">
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" [attr.href]="'#' + sanitizeId(group.key)"
+                                data-bs-toggle="collapse" role="button" aria-expanded="false"
+                                [attr.aria-controls]="sanitizeId(group.key)">
+                                <i class="{{ getGroupIcon(group.key) }}"></i>
+                                <span data-key="t-authentication">{{ group.key }}</span>
+                            </a>
+
+                            <div class="collapse menu-dropdown" [attr.id]="sanitizeId(group.key)">
+                                <ul class="nav nav-sm flex-column">
+                                    <ng-container *ngFor="let item of group.value">
+
+                                        <!-- Si tiene hijos (submenús) -->
+                                        <li class="nav-item" *ngIf="item.children?.length">
+                                            <a [attr.href]="'#submenu' + item.ID" class="nav-link"
+                                                data-bs-toggle="collapse" role="button" aria-expanded="false"
+                                                [attr.aria-controls]="'submenu' + item.ID"
+                                                [attr.data-key]="'t-' + sanitizeId(item.DESCRIPCION)">
+                                                {{ item.DESCRIPCION }}
+                                            </a>
+                                            <div class="collapse menu-dropdown" [attr.id]="'submenu' + item.ID">
+                                                <ul class="nav nav-sm flex-column">
+                                                    <li class="nav-item" *ngFor="let child of item.children">
+                                                        <a [routerLink]="[child.RUTA]" class="nav-link"
+                                                            data-key="t-basic">
+                                                            {{ child.DESCRIPCION }}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <!-- Si NO tiene hijos -->
+                                        <li class="nav-item" *ngIf="!item.children?.length">
+                                            <a [routerLink]="[item.RUTA]" class="nav-link" routerLinkActive="active"
+                                                data-key="t-starter">
+                                                {{ item.DESCRIPCION }}
+                                            </a>
+                                        </li>
+
+                                    </ng-container>
+                                </ul>
+                            </div>
+                        </li>
+                    </ng-container>
+                </ng-container>
+
+            </ul>
+
+
+            <!-- <ul class="navbar-nav" id="navbar-nav">
 
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                 <li class="nav-item">
@@ -122,24 +209,6 @@
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarRecord">
                         <ul class="nav nav-sm flex-column">
-                            <!-- <li class="nav-item">
-                                <a href="#sidebarCriminalRecord" class="nav-link" data-bs-toggle="collapse" role="button"
-                                    aria-expanded="false" aria-controls="sidebarCriminalRecord" data-key="t-signin"> Antecedentes Policiales
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarCriminalRecord">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="auth-signin-basic.html" class="nav-link" data-key="t-basic">
-                                                Consulta DNI
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-signin-basic-2.html" class="nav-link" data-key="t-basic-2">
-                                                Consulta Nombre</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li> -->
                             <li class="nav-item">
                                 <a [routerLink]="['/pide/antecedentes/policiales']" class="nav-link" data-key="t-team">
                                     Antecedentes Policiales</a>
@@ -156,7 +225,7 @@
                     </div>
                 </li>
 
-            </ul>
+            </ul> -->
         </div>
         <!-- Sidebar -->
     </div>

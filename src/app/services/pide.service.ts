@@ -13,6 +13,9 @@ export class PideService {
 
   constructor() { }
 
+  loginAuth(data:any){
+    return this.http.post(`${environment.apiBackend}/pide/login`, data);
+  }
   // ===== ADMIN ===== 
   getAllUsers(data: any): Observable<any> {
     return this.http.post(`${environment.apiBackend}/pide/sel-users`, data);

@@ -2,6 +2,7 @@ import { Component, effect, signal } from '@angular/core';
 import { PideService } from '../../../../services/pide.service';
 import { CommonModule } from '@angular/common';
 import { GridService } from '../../../../services/grid.service';
+import { h } from 'gridjs';
 
 @Component({
   selector: 'app-bienes',
@@ -14,7 +15,7 @@ export default class BienesComponent {
   DATATABLE_ID = 'table-card';
 
   gridInstance: any;
-  columns = signal<string[]>([]);
+  columns = signal<any[]>([]);
 
   dataBienes = signal<any[][]>([])
 
@@ -57,7 +58,7 @@ export default class BienesComponent {
 
       if (data.length > 0) {
         this.gridService.destroy(this.DATATABLE_ID);
-        this.gridService.render(this.DATATABLE_ID, columns, data);
+        this.gridService.render(this.DATATABLE_ID, columns, data, 5);
       }
     }
     )
@@ -74,10 +75,26 @@ export default class BienesComponent {
     this.gridService.destroy(this.DATATABLE_ID);
 
     this.columns.set([
-      "N°Partida", "Ap.Paterno",
-      "Ap.Materno", "Nombre", "Tip.Doc",
-      "N°Doc", "Dirección", "Estado", "Libro", "N°Placa",
-      "Oficina", "Registro", "Zona"
+      {
+        name: "N°Partida",
+        formatter: (cell: string) => {
+          const statusClass = 'btn btn-primary';
+          return h('button', { className: `badge ${statusClass} p-1 rounded` }, cell);
+        }
+
+      },
+      { name: "Ap.Paterno" },
+      { name: "Ap.Materno" },
+      { name: "Nombre" },
+      { name: "Tip" },
+      { name: "N°Doc" },
+      { name: "Dirección" },
+      { name: "Estado" },
+      { name: "Libro" },
+      { name: "N°Placa" },
+      { name: "Oficina" },
+      { name: "Registro" },
+      { name: "Zona" }
     ]);
 
     this.pideService.getBienesPerNatural(post).subscribe({

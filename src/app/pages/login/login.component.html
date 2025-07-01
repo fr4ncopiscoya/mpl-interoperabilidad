@@ -19,55 +19,31 @@
                             <p class="text-muted">Ingresa tus credenciales para entrar al Sistema de Interoperabilidad</p>
                         </div>
                         <div class="p-2 mt-5">
-                            <form action="https://themesbrand.com/hybrix/html/index.html">
+                            <form>
 
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Usuario</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1"><i class="ri-user-3-line"></i></span>
-                                        <input type="text" class="form-control" id="username" placeholder="Ingresa tu usuario">
+                                        <input type="text" class="form-control" id="username" placeholder="Ingresa tu usuario" #txtUsername>
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <!-- <div class="float-end">
-                                        <a href="auth-pass-reset-basic.html" class="text-muted">Forgot password?</a>
-                                    </div> -->
                                     <label class="form-label" for="password-input">Contraseña</label>
                                     <div class="position-relative auth-pass-inputgroup overflow-hidden">
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon1"><i class="ri-lock-2-line"></i></span>
-                                            <input type="password" class="form-control pe-5 password-input" placeholder="Ingresa tu contraseña" id="password-input">
+                                            <input type="password" class="form-control pe-5 password-input" placeholder="Ingresa tu contraseña" id="password-input" #txtPassword>
                                         </div>
                                         <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                     </div>
                                 </div>
 
-                                <!-- <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
-                                    <label class="form-check-label" for="auth-remember-check">Remember me</label>
-                                </div> -->
-
                                 <div class="mt-4">
-                                    <button class="btn btn-primary w-100" type="submit">Ingresar</button>
+                                    <button id="btnLoginAction" class="btn btn-primary w-100" type="button" (click)="login(txtUsername.value,txtPassword.value)" >Ingresar</button>
                                 </div>
-
-                                <!-- <div class="mt-4 pt-2 text-center">
-                                    <div class="signin-other-title">
-                                        <h5 class="fs-13 mb-4 title">Sign In with</h5>
-                                    </div>
-                                    <div class="pt-2 hstack gap-2 justify-content-center">
-                                        <button type="button" class="btn btn-soft-primary btn-icon"><i class="ri-facebook-fill fs-16"></i></button>
-                                        <button type="button" class="btn btn-soft-danger btn-icon"><i class="ri-google-fill fs-16"></i></button>
-                                        <button type="button" class="btn btn-soft-dark btn-icon"><i class="ri-github-fill fs-16"></i></button>
-                                        <button type="button" class="btn btn-soft-info btn-icon"><i class="ri-twitter-fill fs-16"></i></button>
-                                    </div>
-                                </div> -->
                             </form>
-
-                            <!-- <div class="text-center mt-5">
-                                <p class="mb-0">Don't have an account ? <a href="auth-signup-basic-2.html" class="fw-semibold text-secondary text-decoration-underline"> SignUp</a> </p>
-                            </div> -->
                         </div>
                     </div>
                     <!-- end card body -->
@@ -77,3 +53,4 @@
         </div>
     </div>
 </section>
+<app-toast></app-toast>

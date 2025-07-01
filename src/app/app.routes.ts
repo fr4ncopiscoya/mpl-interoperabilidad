@@ -53,8 +53,10 @@ export const routes: Routes = [
                 path:'admin/gestion',
                 loadComponent: () => import('./pages/admin/gestion/gestion.component')
             },
-
-
+            {
+                path:'admin/credenciales',
+                loadComponent: () => import('./pages/admin/gestion/gestion.component')
+            },
             {
                 path:'**',
                 redirectTo: 'inicio'

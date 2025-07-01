@@ -8,7 +8,7 @@ import { Grid } from 'gridjs';
 export class GridService {
   private instances = new Map<string, Grid>(); // múltiples grids por id opcional
 
-  render(containerId: string, columns: any[], data: any[][]) {
+  render(containerId: string, columns: any[], data: any[][], limit: number) {
     const container = document.getElementById(containerId);
     
     if (!container) return;
@@ -26,7 +26,7 @@ export class GridService {
       data,
       search: true,
       pagination: {
-        limit: 5,
+        limit: limit,
         summary: true
       },
       language: {

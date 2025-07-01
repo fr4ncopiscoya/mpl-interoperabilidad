@@ -37,7 +37,7 @@ export default class PolicialesComponent {
       const columns = this.columns();
 
       if (data.length > 0) {
-        this.gridService.render(this.DATATABLE_ID, columns, data);
+        this.gridService.render(this.DATATABLE_ID, columns, data, 5);
       }
 
     })
@@ -118,7 +118,7 @@ export default class PolicialesComponent {
 
 
         const formatted = data.map((p: any) => [
-          p.tipoDocumento || '',
+          p.tipoDocumento || '',  
           p.nroDocumento || '',
           p.nombres || '',
           p.apellidoPaterno || '',
