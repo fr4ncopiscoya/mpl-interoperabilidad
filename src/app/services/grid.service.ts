@@ -38,8 +38,10 @@ export class GridService {
           to: 'de',
           of: 'de',
           results: () => 'resultados'
-        }
-      }
+        },
+        noRecordsFound: 'No se encontraron resultados',
+        error: 'Ocurrió un error al obtener datos',
+      },
     });
 
     grid.render(container);

@@ -21,6 +21,21 @@ export default class LoginComponent {
 
   USERNAME = signal<string>('');
 
+  togglePassword() {
+    let passwordInput = document.getElementById('password-input') as HTMLInputElement;
+    let passwordIcon = document.getElementById('passwordEye') as HTMLSpanElement;
+
+    if (passwordIcon.classList.contains('ri-eye-fill')) {
+      passwordInput.type = 'text';
+      passwordIcon.classList.remove('ri-eye-fill');
+      passwordIcon.classList.add('ri-eye-off-fill');
+    } else {
+      passwordInput.type = 'password';
+      passwordIcon.classList.remove('ri-eye-off-fill');
+      passwordIcon.classList.add('ri-eye-fill');
+    }
+  }
+
   login(username: string, password: string) {
     let btnLogin = document.getElementById('btnLoginAction') as HTMLButtonElement;
     btnLogin.innerHTML = '<span class="align-items-center"><span class="spinner-border flex-shrink-0" role="status"><span class="visually-hidden">Loading...</span></span><span class="flex-grow-1 ms-2">Ingresando...</span></span>';

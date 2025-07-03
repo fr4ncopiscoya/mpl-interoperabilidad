@@ -31,6 +31,12 @@ export class PideService {
   }
 
   // ===== SUNARP =====
+  getPartida(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-partida`, data);
+  }
+  getPartidaImg(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-partidaimg`, data);
+  }
   getRegistroVehicular(data: any): Observable<any> {
     return this.http.post(`${environment.apiBackend}/pide/sel-rvehicular`, data);
   }

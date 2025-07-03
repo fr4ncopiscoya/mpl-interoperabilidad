@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0">SUNARP</h4>
+        </div>
+    </div>
+    <div class="">
+        <div class="row mb-sm-4">
+            <div class="col-lg-6 col-12">
+                <div class="card bg-primary text-white border-0">
+                    <div class="card-body">
+                        <div class="row gy-3">
+                            <div class="col-sm">
+                                <h5 class="card-title text-white fs-17">CONSULTA AQUI !</h5>
+                                <p class="mb-0">Numero de partida</p>
+                            </div>
+                            <div class="col-sm-auto d-flex justify-content-center align-items-center">
+                                <input type="string" autofocus placeholder="Ingrese Numero..." class="form-control input-dni"
+                                    maxlength="8" aria-label="Recipient's username" aria-describedby="button-addon2"
+                                    #txtSearch>
+                                <button class="btn btn-dark btn-dni" type="button" id="button-addon2"
+                                    (click)="getPartida(txtSearch.value)">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+            </div>
+            <div class="col-sm-7">
+
+            </div>
+        </div>
+        <div class="row">
+            <div [ngClass]="baseToImage ? 'col-lg-5': 'col-lg-12'">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class=" d-flex align-items-center card-title mb-0">RESULTADOS PARTIDA N° {{ this.numPartida
+                            }}</h4>
+                    </div><!-- end card header -->
+
+                    <div class="card-body">
+                        <div id="table-card" class="table-card"></div>
+                    </div><!-- end card-body -->
+                </div><!-- end card -->
+            </div>
+            <ng-container *ngIf="this.baseToImage.length > 0">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6 d-flex flex-column">
+                    <img [src]="baseToImage" class="image-partida" />
+                    <button class="btn btn-primary" (click)="this.descargarPDF()">Descargar Imagen</button>
+                </div>
+            </ng-container>
+            <!-- end col -->
+        </div>
+    </div>
+</div>
+
+<app-modal #globalModal [title]="'Detalle Partida'" [size]="baseToImage ? 'xl' : 'lg'">
+    <!-- <div modal-header>
+        <h5 class="modal-title">Detalle</h5>
+        <button type="button" class="btn-close" (click)="globalModal.close()" aria-label="Close"></button>
+    </div> -->
+    <div modal-body>
+        <!-- GRID TABLE -->
+        <div class="row">
+            <div [ngClass]="baseToImage ? 'col-lg-6': 'col-lg-12'">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class=" d-flex align-items-center card-title mb-0">RESULTADOS PARTIDA N° {{ this.numPartida
+                            }}</h4>
+                    </div><!-- end card header -->
+
+                    <div class="card-body">
+                        <div id="table-card" class="table-card"></div>
+                    </div><!-- end card-body -->
+                </div><!-- end card -->
+            </div>
+            <ng-container *ngIf="this.baseToImage.length > 0">
+                <div class="col-lg-6 d-flex flex-column">
+                    <img [src]="baseToImage" class="" />
+                    <button class="btn btn-primary" (click)="this.descargarPDF()">Descargar Imagen</button>
+                </div>
+            </ng-container>
+            <!-- end col -->
+        </div>
+    </div>
+
+    <div modal-footer>
+        <!-- <button class="btn btn-primary" (click)="globalModal.close()">Cerrar</button> -->
+        <!-- <button class="btn btn-primary" (click)="guardar()">Guardar</button> -->
+    </div>
+</app-modal>

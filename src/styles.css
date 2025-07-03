@@ -1,5 +1,21 @@
 @import 'assets/css/app.min.css';
 @import 'assets/libs/gridjs/theme/mermaid.min.css';
-.disabled{
+
+.disabled {
     background-color: rgba(0, 0, 0, 0.305);
+}
+
+.image-partida {
+    width: 100%;
+    min-height: 35rem;
+    max-height: 35rem;
+    border: 2px solid #eff2f7;
+}
+
+.input-c-search {
+    border-radius: 10px 0 0 10px;
+}
+
+.btn-c-search {
+    border-radius: 0 10px 10px 0;
 }

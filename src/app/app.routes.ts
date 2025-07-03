@@ -22,6 +22,10 @@ export const routes: Routes = [
 
             //===== PROPIEDADES =====
             {
+                path:'sunarp/partida',
+                loadComponent: () => import('./pages/propiedades/sunarp/partida/partida.component')
+            },
+            {
                 path:'sunarp/bienes',
                 loadComponent: () => import('./pages/propiedades/sunarp/bienes/bienes.component')
             },

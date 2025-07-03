@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuneduComponent } from './sunedu.component';
+import { InputSearchComponent } from './input-search.component';
 
-describe('SuneduComponent', () => {
-  let component: SuneduComponent;
-  let fixture: ComponentFixture<SuneduComponent>;
+describe('InputSearchComponent', () => {
+  let component: InputSearchComponent;
+  let fixture: ComponentFixture<InputSearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SuneduComponent]
+      imports: [InputSearchComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SuneduComponent);
+    fixture = TestBed.createComponent(InputSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

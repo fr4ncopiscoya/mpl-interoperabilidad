@@ -29,6 +29,13 @@ export class MenuComponent {
       RUTA: '/pide/sunarp/vehicular',
       ID_PADRE: 3,
       GRUPO: 'Propiedades'
+    },
+    {
+      ID: 12,
+      DESCRIPCION: 'Consulta Partida',
+      RUTA: '/pide/sunarp/partida',
+      ID_PADRE: 3,
+      GRUPO: 'Propiedades'
     }
   ];
 

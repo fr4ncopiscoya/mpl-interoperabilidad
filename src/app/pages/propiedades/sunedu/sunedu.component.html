@@ -15,10 +15,10 @@
                                 <p class="mb-0">Grados academicos y títulos profesionales</p>
                             </div>
                             <div class="col-sm-auto d-flex justify-content-center align-items-center">
-                                <input type="string" placeholder="Ingrese DNI..." class="form-control input-dni"
+                                <input type="string" placeholder="Ingrese DNI..." class="form-control input-c-search"
                                     maxlength="8" aria-label="Recipient's username" aria-describedby="button-addon2"
                                     #txtSearch>
-                                <button class="btn btn-dark btn-dni" type="button" id="button-addon2"
+                                <button class="btn btn-dark btn-c-search" type="button" id="button-addon2"
                                     (click)="getSunedu(txtSearch.value)">Buscar</button>
                             </div>
                         </div>
@@ -40,7 +40,6 @@
                     <div class="card-body">
                         <div class="mb-3">{{this.message}} </div>
                         <div id="table-card" class="table-card">
-                            <!-- <h3>XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD</h3> -->
                         </div>
                     </div><!-- end card-body -->
                 </div><!-- end card -->
