@@ -13,12 +13,41 @@ export class PideService {
 
   constructor() { }
 
+
+    
+  insertPermissionsByUser(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/ins-permissions`, data);
+  }
+
+  insertUser(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/ins-usuario`, data);
+  }
+
+  updateReniecCredentials(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/upd-reniec-credentials`, data);
+  }
+
+
+
+
+
+
   loginAuth(data:any){
     return this.http.post(`${environment.apiBackend}/pide/login`, data);
   }
+  getAreas(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-areas`, data);
+  }
+
   // ===== ADMIN ===== 
   getAllUsers(data: any): Observable<any> {
     return this.http.post(`${environment.apiBackend}/pide/sel-users`, data);
+  }
+  getMenus(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-menus`, data);
+  }
+  getMenusByUser(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-menus-user`, data);
   }
 
 

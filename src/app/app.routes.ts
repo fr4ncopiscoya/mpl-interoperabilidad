@@ -59,7 +59,7 @@ export const routes: Routes = [
             },
             {
                 path:'admin/credenciales',
-                loadComponent: () => import('./pages/admin/gestion/gestion.component')
+                loadComponent: () => import('./pages/admin/credenciales/credenciales.component')
             },
             {
                 path:'**',

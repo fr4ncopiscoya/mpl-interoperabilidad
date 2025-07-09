@@ -29,7 +29,7 @@ export class ToastComponent {
     setTimeout(() => {
       toastContainer.classList.remove('fade', 'show');
     },
-      5000);
+      2000);
   }
 
 }

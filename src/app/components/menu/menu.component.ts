@@ -54,37 +54,21 @@ export class MenuComponent {
   }
 
   groupedMenus = computed(() => {
-    const originalMenus = this.session.menus();
+    const originalMenus = this.session.menus()?.filter((menu: Menu) => menu.ESTATUS === 1);
     if (!originalMenus || !Array.isArray(originalMenus)) return {};
 
-    // Clonar los menús originales
     const flatMenus: Menu[] = [...originalMenus];
 
-    // Si existe SUNARP (ID 3), agregarle los hijos extra
-    const hasSunarp = flatMenus.some(m => m.ID === 3);
-    if (hasSunarp) {
-      // Solo añadir si aún no están (evitar duplicados si reejecuta el computed)
-      const childIds = new Set(flatMenus.map(m => m.ID));
-      this.extraChildren.forEach(child => {
-        if (!childIds.has(child.ID)) {
-          flatMenus.push(child);
-        }
-      });
+    // Si hay SUNARP activo, agregamos sus submenús
+    const sunarp = flatMenus.find(m => m.ID === 3);
+    if (sunarp) {
+      sunarp.children = this.extraChildren;
     }
 
-    // Separar padres e hijos
-    const parents = flatMenus.filter(m => !m.ID_PADRE);
-    const children = flatMenus.filter(m => m.ID_PADRE);
 
-    // Asociar hijos a sus padres
-    const withChildren = parents.map(parent => ({
-      ...parent,
-      children: children.filter(c => c.ID_PADRE === parent.ID)
-    }));
-
-    // Agrupar por grupo
+    // Agrupar solo por GRUPO
     const grouped: { [key: string]: Menu[] } = {};
-    withChildren.forEach(menu => {
+    flatMenus.forEach(menu => {
       const group = menu.GRUPO || 'Otros';
       if (!grouped[group]) grouped[group] = [];
       grouped[group].push(menu);
@@ -92,4 +76,5 @@ export class MenuComponent {
 
     return grouped;
   });
+
 }

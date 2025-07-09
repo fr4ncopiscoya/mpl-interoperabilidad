@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { PideService } from '../../../services/pide.service';
 
 @Component({
   selector: 'app-credenciales',
@@ -6,6 +7,25 @@ import { Component } from '@angular/core';
   templateUrl: './credenciales.component.html',
   styleUrl: './credenciales.component.css'
 })
-export class CredencialesComponent {
+export default class CredencialesComponent {
+
+  private pideService = inject(PideService);
+
+  updateReniecCredentials(){
+    const post ={
+
+    };
+
+    this.pideService.updateReniecCredentials(post).subscribe({
+      next:(res) =>{
+        console.log('resonse: ', res);
+        
+      },
+      error:(error)=>{
+        console.log('error: ', error);
+        
+      }
+    })
+  }
 
 }

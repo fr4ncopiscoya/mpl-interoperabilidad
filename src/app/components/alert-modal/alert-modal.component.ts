@@ -1,17 +1,17 @@
-import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 declare var bootstrap: any;
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
+  selector: 'app-alert-modal',
+  imports: [],
+  templateUrl: './alert-modal.component.html',
+  styleUrl: './alert-modal.component.css'
 })
+export class AlertModalComponent {
 
-
-export class ModalComponent implements AfterViewInit {
-
-  @Input() title: string = 'Modal';
-  @Input() size: 'modal-sm' | 'modal-lg' | 'modal-xl' | '' = '';
-  @Input() bgcolor: 'bg-warning' | 'bg-primary' | 'bg-secondary' | '' = '';
+  @Input() icon: string = '';
+  @Input() title: string = '';
+  @Input() description: string = '';
 
   @ViewChild('modalRef') modalElement!: ElementRef;
 
@@ -31,4 +31,5 @@ export class ModalComponent implements AfterViewInit {
   close() {
     this.modalInstance?.hide();
   }
+
 }

@@ -11,6 +11,7 @@ export interface Menu {
     RUTA: string;
     ID_PADRE: number | null;
     GRUPO?: string;
+    ESTATUS?: number;
     ICONO?: string;
     children?: Menu[];
 }
