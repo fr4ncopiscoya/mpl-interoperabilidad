@@ -1,7 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
-import { ResultMessageComponent } from '../../../../components/result-message/result-message.component';
-import { ResultMessageService } from '../../../../services/result-message.service';
 import { PideService } from '../../../../services/pide.service';
+import { SweetAlertService } from '../../../../services/sweet-alert.service';
 
 export interface Propietario {
   nombre: string;
@@ -26,7 +25,7 @@ export interface Vehiculo {
 
 @Component({
   selector: 'app-vehicular',
-  imports: [ResultMessageComponent],
+  imports: [],
   templateUrl: './vehicular.component.html',
   styleUrl: './vehicular.component.css'
 })
@@ -48,7 +47,7 @@ export default class VehicularComponent {
 
 
   constructor(
-    private resultMessage: ResultMessageService,
+    private sweetAlertService: SweetAlertService,
     private pideService: PideService
   ) { }
 
@@ -57,17 +56,22 @@ export default class VehicularComponent {
 
     this.pideService.getRegistroVehicular(post).subscribe({
       next: (res) => {
-        const vehiculo = res.verDetalleRPVExtraResponse.vehiculo;
-        if(vehiculo.placa !== null){
-          this.dataVehiculo.set(vehiculo);
-          this.resultMessage.setResult('Consulta exitosa', 'success');
-        }else{
-          this.resultMessage.setResult('Placa no encontrada', 'danger');
-          this.dataVehiculo.set(null);
+        if (query.length < 6) {
+          this.sweetAlertService.info('', 'Por favor ingrese mínimo 6 caracteres ')
+        } else {
+          const vehiculo = res.verDetalleRPVExtraResponse.vehiculo;
+          if (vehiculo.placa !== null) {
+            this.dataVehiculo.set(vehiculo);
+            this.sweetAlertService.success('RESULTADO', 'Consulta realizada satisfactoriamente');
+          } else {
+            this.sweetAlertService.info('', 'Placa no encontrada');
+            this.dataVehiculo.set(null);
+          }
         }
+
       },
       error: () => {
-        this.resultMessage.setResult('Error en la consulta', 'danger');
+        this.sweetAlertService.error('ERROR', 'Ocurrió un error');
         this.dataVehiculo.set(null);
       }
     });

@@ -2,6 +2,7 @@ import { Component, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PideService } from '../../../services/pide.service';
 import { GridService } from '../../../services/grid.service';
+import { SweetAlertService } from '../../../services/sweet-alert.service';
 
 @Component({
   selector: 'app-policiales',
@@ -30,7 +31,8 @@ export default class PolicialesComponent {
 
   constructor(
     private pideService: PideService,
-    private gridService: GridService
+    private gridService: GridService,
+    private sweetAlertService: SweetAlertService
   ) {
     effect(() => {
       const data = this.dataAntecedentes();
@@ -81,17 +83,20 @@ export default class PolicialesComponent {
     const post = {
       nroDoc: this.docIdentidad()
     }
+    if (this.docIdentidad().length > 7) {
+      this.pideService.getAPolicialNumDoc(post).subscribe({
+        next: (res) => {
+          // const data = res.consultarPersonaNomPatResponse.RespuestaPersona
+          console.log('data: ', res);
+        },
+        error: (error) => {
+          console.log('error: ', error);
 
-    this.pideService.getAPolicialNumDoc(post).subscribe({
-      next: (res) => {
-        // const data = res.consultarPersonaNomPatResponse.RespuestaPersona
-        console.log('data: ', res);
-      },
-      error: (error) => {
-        console.log('error: ', error);
-
-      }
-    })
+        }
+      })
+    } else {
+      
+    }
 
   }
   getAPolicialNomPatMat() {
@@ -102,7 +107,7 @@ export default class PolicialesComponent {
     }
 
     this.columns.set([
-      "Tip.Doc","N°Doc", "Nombres", "Ap.Paterno",
+      "Tip.Doc", "N°Doc", "Nombres", "Ap.Paterno",
       "Ap.Materno", "Cod.Persona", "Contextura",
       "Doble Identidad", "Nacimiento", "Homonimia",
       "Padre", "Madre", "Sexo", "Talla"
@@ -118,7 +123,7 @@ export default class PolicialesComponent {
 
 
         const formatted = data.map((p: any) => [
-          p.tipoDocumento || '',  
+          p.tipoDocumento || '',
           p.nroDocumento || '',
           p.nombres || '',
           p.apellidoPaterno || '',

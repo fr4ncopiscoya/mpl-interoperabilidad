@@ -1,9 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { SpinnerService } from '../../../services/spinner.service';
 import { CommonModule } from '@angular/common';
 import { PideService } from '../../../services/pide.service';
 import { ResultMessageService } from '../../../services/result-message.service';
-import { ResultMessageComponent } from '../../../components/result-message/result-message.component';
+import { SweetAlertService } from '../../../services/sweet-alert.service';
 
 interface DatosPersona {
   apPrimer: string;
@@ -19,15 +19,13 @@ interface DatosPersona {
 
 @Component({
   selector: 'app-reniec',
-  imports: [CommonModule, ResultMessageComponent],
+  imports: [CommonModule],
   templateUrl: './reniec.component.html',
   styleUrl: './reniec.component.css'
 })
 export default class ReniecComponent {
-  constructor(
-    private pideService: PideService,
-    private resultMessage: ResultMessageService,
-  ) { }
+  private pideService = inject(PideService);
+  private sweetAlertService = inject(SweetAlertService);
 
   // DATA USUARIO RENIEC
   dataReniec = signal<DatosPersona | null>(null);
@@ -64,16 +62,15 @@ export default class ReniecComponent {
         switch (codeResult) {
           case '0000':
             this.dataReniec.set(res.consultarResponse.return.datosPersona);
-            this.resultMessage.setResult(message, 'success');
+            this.sweetAlertService.success('', message);
             break;
           default:
             this.dataReniec.set(null);
-            this.resultMessage.setResult(message, 'danger');
+            this.sweetAlertService.error('ERROR', message);
             break;
         }
       },
       error: (error) => {
-        this.resultMessage.setResult('Ocurrió un error', 'danger')
         console.error('Error en la petición:', error);
       }
     });

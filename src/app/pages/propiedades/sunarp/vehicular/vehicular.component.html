@@ -10,13 +10,13 @@
                 <div class="input-group input-group-lg">
                     <input type="string" placeholder="Ingrese Placa..." class="form-control"
                         aria-label="Recipient's username" aria-describedby="button-addon2" #txtSearch
-                        (input)="txtSearch.value = txtSearch.value.toUpperCase()" maxlength="6" minlength="6">
+                        (input)="txtSearch.value = txtSearch.value.toUpperCase()" maxlength="6" minlength="6" autofocus>
                     <button class="btn btn-outline-primary" type="button" id="button-addon2"
                         (click)="getRegistroVehicular(txtSearch.value)">Buscar</button>
                 </div>
             </div>
             <div class="col-sm-7">
-                <app-result-alert></app-result-alert>
+                <!-- <app-result-alert></app-result-alert> -->
             </div>
         </div>
         <div class="row">

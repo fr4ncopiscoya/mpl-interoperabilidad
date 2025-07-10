@@ -55,6 +55,7 @@ export default class LoginComponent {
         switch (code) {
           case 0:
             this.toastComponent.showToast(message, 'success');
+            // console.log('auth???', this.pideService.p_user_auth());
 
             this.session.user_id.set(res.id_usuario);
             this.session.user_name.set(res.username);

@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -33,6 +33,7 @@ export class PideService {
 
 
   loginAuth(data:any){
+    console.log('data:', data);
     return this.http.post(`${environment.apiBackend}/pide/login`, data);
   }
   getAreas(data: any): Observable<any> {
@@ -96,4 +97,8 @@ export class PideService {
     return this.http.post(`${environment.apiBackend}/pide/sel-antpol-codper`, data);
   }
 
+
+  getAJudiciales(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-ant-judicial`, data);
+  }
 }

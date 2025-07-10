@@ -6,6 +6,7 @@ import { ModalComponent } from '../../../../components/modal/modal.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import jsPDF from 'jspdf';
 import { h } from 'gridjs';
+import { SweetAlertService } from '../../../../services/sweet-alert.service';
 
 interface Asiento {
   idImgAsiento: number;
@@ -115,6 +116,7 @@ export default class BienesComponent {
   constructor(
     private pideService: PideService,
     private gridService: GridService,
+    private sweetAlertService: SweetAlertService,
     private domSanitizer: DomSanitizer
   ) {
     effect(() => {
@@ -132,6 +134,19 @@ export default class BienesComponent {
     }
     )
   }
+
+  isEmptyObject(obj: any) {
+    return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
+  }
+
+  isEmptyArrayOfEmptyObjects(arr: any[]): boolean {
+    return (
+      Array.isArray(arr) &&
+      arr.length === 1 &&
+      this.isEmptyObject(arr[0])
+    );
+  }
+
 
   abrirModal(partida: number) {
     this.numPartida = partida;
@@ -322,31 +337,45 @@ export default class BienesComponent {
 
     this.pideService.getBienesPerNatural(post).subscribe({
       next: (res) => {
-        const personasRaw = res.buscarTitularidadSIRSARPResponse?.respuestaTitularidad?.respuestaTitularidad || {};
-        const personas = Array.isArray(personasRaw) ? personasRaw : [personasRaw];
+        const message = res.buscarTitularidadSIRSARPResponse.respuestaTitularidad?.respuestaTitularidad.mensaje;
 
+        if (message === '' || message == undefined) {
+          const personasRaw = res.buscarTitularidadSIRSARPResponse?.respuestaTitularidad?.respuestaTitularidad || {};
+          const personas = Array.isArray(personasRaw) ? personasRaw : [personasRaw];
 
-        const formatted = personas.map((p: any) => [
-          p.numeroPartida || '',
-          p.apMaterno || '',
-          p.apPaterno || '',
-          p.nombre || '',
-          p.tipoDocumento || '',
-          p.numeroDocumento || '',
-          p.direccion || '',
-          p.estado || '',
-          p.libro || '',
-          p.numeroPlaca || '',
-          p.oficina || '',
-          p.registro || '',
-          p.zona || '',
-        ])
+          if (
+            personas.length === 0 ||
+            this.isEmptyArrayOfEmptyObjects(personas)
+          ) {
+            console.log('No hay datos');
+            this.sweetAlertService.error('Sin resultados', 'No se encontraron datos en la busqueda');
+            this.dataBienes.set([]);
+            return;
+          }
 
-        this.dataBienes.set(formatted);
-      },
-      error: (error) => {
-        console.log('error: ', error);
-        this.dataBienes.set([]);
+          const formatted = personas.map((p: any) => [
+            p.numeroPartida || '',
+            p.apMaterno || '',
+            p.apPaterno || '',
+            p.nombre || '',
+            p.tipoDocumento || '',
+            p.numeroDocumento || '',
+            p.direccion || '',
+            p.estado || '',
+            p.libro || '',
+            p.numeroPlaca || '',
+            p.oficina || '',
+            p.registro || '',
+            p.zona || '',
+          ]);
+
+          this.dataBienes.set(formatted);
+          this.sweetAlertService.success('RESULTADO', 'Busqueda satisfactoria');
+        } else {
+          console.log('mensaje de error recibido');
+          this.dataBienes.set([]);
+          this.sweetAlertService.error('ERROR', message);
+        }
       }
     })
   }
@@ -380,23 +409,29 @@ export default class BienesComponent {
 
     this.pideService.getBienesPerJuridica(post).subscribe({
       next: (res) => {
-        const personasRaw = res.personaJuridica.resultado || {};
-        const personas = Array.isArray(personasRaw) ? personasRaw : [personasRaw];
+        if (res.personaJuridica !== null) {
+          const personasRaw = res.personaJuridica.resultado || {};
+          const personas = Array.isArray(personasRaw) ? personasRaw : [personasRaw];
 
-        const formatted = personas.map((p: any) => [
-          p.partida || '',
-          p.denominacion || '',
-          p.oficina || '',
-          p.tipo || '',
-          p.zona || '',
-        ])
+          const formatted = personas.map((p: any) => [
+            p.partida || '',
+            p.denominacion || '',
+            p.oficina || '',
+            p.tipo || '',
+            p.zona || '',
+          ])
 
-        this.gridService.destroy(this.DATATABLE_ID);
+          this.gridService.destroy(this.DATATABLE_ID);
 
-        this.dataBienes.set(formatted);
+          this.dataBienes.set(formatted);
+          this.sweetAlertService.success('RESULTADO', 'Busqueda satisfactoria');
+        }else{
+          this.sweetAlertService.info('', 'Sin resultados en la busqueda')
+        }
       },
       error: (error) => {
         console.log('error: ', error);
+        this.sweetAlertService.error('ERROR', 'Ocurrió un error');
       }
     })
   }

@@ -1,7 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { ResultMessageComponent } from "../../../components/result-message/result-message.component";
-import { ResultMessageService } from '../../../services/result-message.service';
+import { Component, inject, signal } from '@angular/core';
 import { PideService } from '../../../services/pide.service';
+import { SweetAlertService } from '../../../services/sweet-alert.service';
 
 interface DatosPersona {
 
@@ -14,15 +13,14 @@ interface DatosPersona {
 
 @Component({
   selector: 'app-cextranjeria',
-  imports: [ResultMessageComponent],
+  imports: [],
   templateUrl: './cextranjeria.component.html',
   styleUrl: './cextranjeria.component.css'
 })
 export default class CextranjeriaComponent {
 
-  constructor(private pideService: PideService) {
-
-  }
+  private pideService = inject(PideService);
+  private sweetAlertService = inject(SweetAlertService);
 
   dataExtranjeria = signal<DatosPersona | null>(null);
 
@@ -30,18 +28,32 @@ export default class CextranjeriaComponent {
     const post = {
       docconsulta: query
     }
-    this.pideService.getCarnetExtranjeria(post).subscribe({
-      next: (res) => {
-        console.log('result ', res);
-        const data = res.datosPersonales
+    if (query.length === 9) {
+      this.pideService.getCarnetExtranjeria(post).subscribe({
+        next: (res) => {
+          console.log('result ', res);
+          const codigo = res.codRespuesta;
+          const message = res.desRespuesta;
 
-        this.dataExtranjeria.set(data);
-      },
-      error: (error) => {
-        console.log('error: ', error);
-        this.dataExtranjeria.set(null);
-      }
-    })
+          if(codigo !== '0000'){
+            this.sweetAlertService.error('ERROR', message);
+          }else{
+            const data = res.datosPersonales
+            this.dataExtranjeria.set(data);
+            this.sweetAlertService.success('', message);
+          }
+
+
+        },
+        error: (error) => {
+          console.log('error: ', error);
+          this.dataExtranjeria.set(null);
+          this.sweetAlertService.error('ERROR', error);
+        }
+      })
+    }else{
+      this.sweetAlertService.info('', 'Por favor ingresar minimo 9 caracteres');
+    }
   }
 
 }

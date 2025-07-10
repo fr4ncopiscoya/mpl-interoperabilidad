@@ -1,107 +1,51 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">RENIEC</h4>
+            <h4 class="mb-sm-0">ACTUALIZAR CREDENCIALES</h4>
         </div>
     </div>
     <div class="">
-        <div class="row mb-sm-4">
-            <div class="col-lg-4 col-12">
-                <div class="card bg-primary text-white border-0">
-                    <div class="card-body">
-                        <div class="row gy-3">
-                            <div class="col-sm">
-                                <h5 class="card-title text-white fs-17">ACTUALIZA AQUI !</h5>
-                                <p class="mb-0">Las credenciales de Reniec</p>
-                            </div>
-                            <div class="col-sm-auto d-flex justify-content-center align-items-center">
 
-                                <!-- <input type="string" placeholder="Ingrese DNI..." class="form-control input-c-search"
-                                    maxlength="8" aria-label="Recipient's username" aria-describedby="button-addon2"
-                                    #txtSearch>
-                                <button class="btn btn-dark btn-c-search" type="button" id="button-addon2"
-                                    (click)="getReniec(txtSearch.value)">Buscar</button> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end card -->
-            </div>
-            <!-- <div class="col-sm-5">
-                        <div class="input-group input-group-lg">
-                              <input type="string" placeholder="Ingrese DNI..." class="form-control"
-                                    aria-label="Recipient's username" aria-describedby="button-addon2" #txtSearch>
-                              <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                                    (click)="getReniec(txtSearch.value)">Buscar</button>
-                        </div>
-                  </div> -->
-            <div class="col-sm-6">
-                <!-- <app-result-alert></app-result-alert> -->
-            </div>
-        </div>
-        <div class="row mb-sm-3">
+
+        <div class="row mb-sm-4">
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title mb-0">RESULTADOS</h4>
+                        <h4 class="card-title mb-0">INGRESAR DATOS</h4>
                     </div>
                     <div class="card-body">
-                        <!-- <div class="row">
-                            <div
-                                class="content-image col-5 d-flex justify-content-center align-items-center border border-dark">
-                                <img [src]="getFotoSrc()" class="img-fluid" alt="...">
+                        <div class="row mb-sm-4">
+                            <div class="col-md-3">
+                                <label class="form-label">Credencial Anterior</label>
+                                <input type="text" class="form-control" [value]="oldCredential()"
+                                    (input)="oldCredential.set($any($event.target).value)">
                             </div>
-                            <div class="col-7">
-                                <div class="row mb-sm-4">
-                                    <div class="col">
-                                        <label for="valueInput" class="form-label">Nombres</label>
-                                        <input type="text" class="form-control" id="valueInput"
-                                            [value]="dataReniec()?.prenombres" disabled>
-                                    </div>
-                                    <div class="col">
-                                        <label for="valueInput" class="form-label">Apellido
-                                            Paterno</label>
-                                        <input type="text" class="form-control" id="valueInput"
-                                            [value]="dataReniec()?.apPrimer" disabled>
-                                    </div>
-                                </div>
-                                <div class="row mb-sm-4">
-                                    <div class="col">
-                                        <label for="valueInput" class="form-label">Apellido
-                                            Materno</label>
-                                        <input type="text" class="form-control" id="valueInput"
-                                            [value]="dataReniec()?.apSegundo" disabled>
-                                    </div>
-                                    <div class="col">
-                                        <label for="valueInput" class="form-label">Estado
-                                            Civil</label>
-                                        <input type="text" class="form-control" id="valueInput"
-                                            [value]="dataReniec()?.estadoCivil" disabled>
-                                    </div>
-                                </div>
-                                <div class="row mb-sm-4">
-                                    <div class="col">
-                                        <label for="valueInput" class="form-label">Ubigeo</label>
-                                        <input type="text" class="form-control" id="valueInput"
-                                            [value]="dataReniec()?.ubigeo" disabled>
-                                    </div>
-                                    <div class="col">
-                                        <label for="valueInput" class="form-label">Restricción</label>
-                                        <input type="text" class="form-control" id="valueInput"
-                                            [value]="dataReniec()?.restriccion" disabled>
-                                    </div>
-                                </div>
-                                <div class="row mb-sm-4">
-                                    <div class="col">
-                                        <label for="valueInput" class="form-label">Dirección</label>
-                                        <input type="text" class="form-control" id="valueInput"
-                                            [value]="dataReniec()?.direccion" disabled>
-                                    </div>
-                                </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Credencial Nueva</label>
+                                <input type="text" class="form-control" [value]="newCredential()"
+                                    (input)="newCredential.set($any($event.target).value)">
                             </div>
-                        </div> -->
+                            <div class="col-md-3">
+                                <label class="form-label">N° DNI</label>
+                                <input type="text" class="form-control" [value]="nuDni()"
+                                    (input)="nuDni.set($any($event.target).value)">
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="row mb-sm-4">
+            <div class="col-sm-2 w-auto">
+                <button type="button" class="btn btn-primary btn-label" (click)="updateReniecCredentials()">
+                    <i class="ri-search-line label-icon align-middle fs-16 me-2"></i> Enviar
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-success btn-label" (click)="resetFields()">
+                    <i class="ri-brush-2-line label-icon align-middle fs-16 me-2"></i> Limpiar
+                </button>
             </div>
         </div>
 

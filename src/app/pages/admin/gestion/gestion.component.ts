@@ -6,11 +6,11 @@ import { AlertModalComponent } from "../../../components/alert-modal/alert-modal
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // For [(ngModel)]
-import { ToastComponent } from '../../../components/toast/toast.component';
+import { SweetAlertService } from '../../../services/sweet-alert.service';
 
 @Component({
   selector: 'app-gestion',
-  imports: [AlertModalComponent, ModalComponent, CommonModule, FormsModule, ToastComponent],
+  imports: [AlertModalComponent, ModalComponent, CommonModule, FormsModule],
   templateUrl: './gestion.component.html',
   styleUrl: './gestion.component.css'
 })
@@ -19,7 +19,6 @@ export default class GestionComponent {
   @ViewChild('agregarUsuario') addUserModal!: ModalComponent;
   @ViewChild('editarModulos') modulosModal!: ModalComponent;
   @ViewChild('alertModal') alertModal!: AlertModalComponent;
-  @ViewChild(ToastComponent) toastComponent!: ToastComponent;
 
 
   //Estado usuario
@@ -58,6 +57,7 @@ export default class GestionComponent {
   constructor(
     private pideService: PideService,
     private gridService: GridService,
+    private sweetAlertService: SweetAlertService,
   ) {
     this.getAreas();
     // this.getMenus();
@@ -73,31 +73,31 @@ export default class GestionComponent {
   }
 
   addUser() {
-    
     const post = {
-      p_usu_id:  this.usu_id(),
-      p_usu_nombres:  this.usu_nombres(),
-      p_usu_apellidos:  this.usu_apellidos(),
-      p_usu_usuario:  this.usu_usuario(),
-      p_usu_password:  this.usu_password(),
-      p_usu_correo:  this.usu_correo(),
-      p_usu_dni:  this.usu_dni(),
-      p_usu_area:  this.usu_area(),
-      p_usu_estatus:  this.usu_estado(),
+      p_usu_id: this.usu_id(),
+      p_usu_nombres: this.usu_nombres(),
+      p_usu_apellidos: this.usu_apellidos(),
+      p_usu_usuario: this.usu_usuario(),
+      p_usu_password: this.usu_password(),
+      p_usu_correo: this.usu_correo(),
+      p_usu_dni: this.usu_dni(),
+      p_usu_area: this.usu_area(),
+      p_usu_estatus: this.usu_estado(),
     }
 
-    console.log('post: ', post);
-    
     this.pideService.insertUser(post).subscribe({
-      next:(res)=>{
+      next: (res) => {
         console.log('result: ', res);
-        setTimeout(() => {
-          this.getUsers();
-        }, 100);
+        const message = res.message;
+        this.sweetAlertService.success('', message);
+        // setTimeout(() => {
+        this.addUserModal.close();
+        this.getUsers();
+        // }, 100);
       },
-      error:(error)=>{
+      error: (error) => {
+        this.sweetAlertService.error('ERROR', 'Ocurrió un error');
         console.log('error: ', error);
-        
       }
     })
   }
@@ -112,8 +112,6 @@ export default class GestionComponent {
       estado: item.ESTATUS ? 1 : 0 // si es null o undefined, se toma como 0
     }));
 
-
-
     const post = {
       p_usu_id: this.usu_id(),
       p_permisos_menu: permisos
@@ -122,10 +120,13 @@ export default class GestionComponent {
     this.pideService.insertPermissionsByUser(post).subscribe({
       next: (res) => {
         const message = res.message
-        this.toastComponent.showToast(message, 'success');
-        console.log('menus-nuevos: ', menus);
+        // setTimeout(() => {
+        this.sweetAlertService.success('', message)
+        this.modulosModal.close();
+        // }, 2000);
       },
       error: (error) => {
+        this.sweetAlertService.error('ERROR', 'Ocurrió un error');
         console.log('error: ', error);
 
       }
@@ -134,10 +135,8 @@ export default class GestionComponent {
 
   openAddUserModal(data: any) {
     if (data != '') {
-      console.log('data-user: ', data);
-      // this.user_id.set(data.ID);
       this.titleModal.set('EDITAR');
-      
+
       this.usu_id.set(data.ID)
       this.usu_nombres.set(data.NOMBRE);
       this.usu_apellidos.set(data.APELLIDOS);
@@ -222,19 +221,6 @@ export default class GestionComponent {
           const item = self.dataRow[index];
 
           return h('div', { className: 'text-end d-flex gap-1' }, [
-            // h('button', {
-            //   className: 'btn btn-sm btn-warning',
-            //   title: 'Editar usuario',
-            //   onclick: () => self.openAddUserModal(item),
-            // }, h('i', { className: 'bi bi-pencil-square' })),
-
-            // h('button', {
-            //   className: 'btn btn-sm btn-secondary',
-            //   title: 'Editar módulo',
-            //   onclick: () => self.openModulosModal(item),
-            // }, h('i', { className: 'bi bi-card-checklist' })),
-
-            // <a href="#viewContactoffcanvas" data-bs-toggle="offcanvas" onclick="overviewList()" class="text-muted px-1 d-block viewlist-btn"><i class="bi bi-eye-fill"></i></a>
             h('a', {
               className: 'text-muted px-1 d-block viewlist-btn cursor-pointer',
               title: 'Editar Usuario',

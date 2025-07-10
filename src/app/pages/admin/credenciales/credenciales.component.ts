@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { PideService } from '../../../services/pide.service';
+import { SweetAlertService } from '../../../services/sweet-alert.service';
 
 @Component({
   selector: 'app-credenciales',
@@ -10,20 +11,46 @@ import { PideService } from '../../../services/pide.service';
 export default class CredencialesComponent {
 
   private pideService = inject(PideService);
+  private sweetAlertService = inject(SweetAlertService);
 
-  updateReniecCredentials(){
-    const post ={
+  oldCredential = signal<string>('MPL@2025');
+  newCredential = signal<string>('MPL@2025');
+  nuDni = signal<string>('');
 
+  resetFields() {
+    this.oldCredential.set('');
+    this.newCredential.set('');
+    this.nuDni.set('');
+  }
+
+  updateReniecCredentials() {
+    const post = {
+      oldCredential: this.oldCredential(),
+      newCredential: this.newCredential(),
+      nuDni: this.nuDni()
     };
 
+    console.log('post: ', post);
+
+
     this.pideService.updateReniecCredentials(post).subscribe({
-      next:(res) =>{
-        console.log('resonse: ', res);
-        
+      next: (res) => {
+        const codigo = res.actualizarcredencialResponse.return.coResultado;
+        console.log('codigo? ', codigo, typeof (codigo));
+
+        const message = res.actualizarcredencialResponse.return.deResultado;
+        console.log('message: ', message);
+
+        if (codigo !== '0000') {
+          this.sweetAlertService.error('ERROR', message);
+        } else {
+          this.sweetAlertService.success('ACTUALIZADO', 'Credenciales actualizados correctamente');
+        }
+
       },
-      error:(error)=>{
+      error: (error) => {
         console.log('error: ', error);
-        
+
       }
     })
   }

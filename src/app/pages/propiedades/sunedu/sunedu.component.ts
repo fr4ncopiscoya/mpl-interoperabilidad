@@ -2,6 +2,7 @@ import { Component, effect, signal } from '@angular/core';
 import { PideService } from '../../../services/pide.service';
 import { Grid } from 'gridjs';
 import { GridService } from '../../../services/grid.service';
+import { SweetAlertService } from '../../../services/sweet-alert.service';
 
 @Component({
   selector: 'app-sunedu',
@@ -16,21 +17,21 @@ import { GridService } from '../../../services/grid.service';
 export default class SuneduComponent {
 
   DATATABLE_ID = 'table-card';
-  message: string = 'NO HAY RESULTADOS';
+  // message: string = 'NO HAY RESULTADOS';
 
   columns = signal<string[]>([]);
   dataSunedu = signal<any[][]>([]);
 
   constructor(
     private pideService: PideService,
-    private gridService: GridService
+    private gridService: GridService,
+    private sweetAlertService: SweetAlertService
   ) {
     effect(() => {
       const data = this.dataSunedu();
       const col = this.columns();
       if (data.length > 0) {
         this.gridService.render(this.DATATABLE_ID, col, data, 5)
-        this.message = '';
       }
     });
   }
@@ -55,9 +56,9 @@ export default class SuneduComponent {
           const errorMessage = res.opConsultarRNGTResponse?.respuesta?.dGenerica?.$;
 
           if (codigo !== '00000') {
-            this.message = errorMessage
             this.dataSunedu.set([]);
             this.gridService.destroy(this.DATATABLE_ID);
+            this.sweetAlertService.error('ERROR', errorMessage);
             return
           }
 
@@ -75,10 +76,10 @@ export default class SuneduComponent {
 
 
           this.dataSunedu.set(formatted);
+          this.sweetAlertService.success('RESULTADO', 'Consulta satisfactoria');
         },
         error: (error) => {
           console.log('error: ', error);
-          this.message = error
           this.dataSunedu.set([]);
           this.gridService.destroy(this.DATATABLE_ID);
         }
@@ -86,6 +87,7 @@ export default class SuneduComponent {
     } else {
       this.dataSunedu.set([]);
       this.gridService.destroy(this.DATATABLE_ID);
+      this.sweetAlertService.info('', 'Por favor, ingresar mínimo 8 caracteres');
     }
   }
 }
