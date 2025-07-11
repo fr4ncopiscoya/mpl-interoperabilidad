@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mpl-documentos": {
+    "mpl-pide": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/mpl-documentos",
+            "outputPath": "dist/mpl-pide",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -74,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "mpl-documentos:build:production"
+              "buildTarget": "mpl-pide:build:production"
             },
             "development": {
-              "buildTarget": "mpl-documentos:build:development"
+              "buildTarget": "mpl-pide:build:development"
             }
           },
           "defaultConfiguration": "development"

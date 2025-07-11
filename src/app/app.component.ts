@@ -11,8 +11,6 @@ import { Router, RouterOutlet, NavigationStart, NavigationEnd, NavigationCancel,
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'mpl-documentos';
-
   loading = false;
 
   constructor(private spinnerService: SpinnerService, private router: Router) { }
