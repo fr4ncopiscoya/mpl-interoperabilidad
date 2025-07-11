@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { PideService } from '../../../services/pide.service';
 import { SweetAlertService } from '../../../services/sweet-alert.service';
+import { InputSearchComponent } from "../../../components/input-search/input-search.component";
 
 interface DatosPersona {
 
@@ -13,7 +14,7 @@ interface DatosPersona {
 
 @Component({
   selector: 'app-cextranjeria',
-  imports: [],
+  imports: [InputSearchComponent],
   templateUrl: './cextranjeria.component.html',
   styleUrl: './cextranjeria.component.css'
 })

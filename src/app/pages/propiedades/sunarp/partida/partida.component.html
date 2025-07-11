@@ -7,7 +7,16 @@
     <div class="">
         <div class="row mb-sm-4">
             <div class="col-lg-6 col-12">
-                <div class="card bg-primary text-white border-0">
+
+                <app-input-search 
+                    placeholder="Ingresar número..."
+                    title="Consulta Aqui!"
+                    subTitle="Busca documento por número de partida"
+                    maxLenght="10"
+                    (value)="getPartida($event)">
+                </app-input-search>
+
+                <!-- <div class="card bg-primary text-white border-0">
                     <div class="card-body">
                         <div class="row gy-3">
                             <div class="col-sm">
@@ -23,7 +32,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
                 <!-- end card -->
             </div>
             <div class="col-sm-7">

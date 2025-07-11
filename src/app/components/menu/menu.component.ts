@@ -46,8 +46,9 @@ export class MenuComponent {
   getGroupIcon(key: string): string {
     const iconMap: Record<string, string> = {
       'Usuarios': 'bi bi-lock-fill',
-      'Identificación': 'bi bi-person-circle',
-      'Propiedades': 'bi bi-journal-medical',
+      'Identificación': 'bi bi-person-bounding-box',
+      'Propiedades': 'bi bi-collection-fill',
+      // 'Propiedades': 'bi bi-journal-text',
       'Antecedentes': 'bi bi-incognito'
     };
     return iconMap[key] || 'bi bi-folder';

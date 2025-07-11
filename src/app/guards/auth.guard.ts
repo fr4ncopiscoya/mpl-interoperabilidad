@@ -1,3 +1,5 @@
+// ======  VALIDA SI EL USUARIO ESTÁ LOGEADO =======
+
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
@@ -7,10 +9,8 @@ export const authGuard: CanActivateFn = (route, state) => {
 
 
   if (isLogged) {
-    console.log('autorizado');
     return true;
   } else {
-    console.log('no autorizado');
     router.navigate(['/login']);
     return false;
   }

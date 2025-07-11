@@ -1,9 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
-import { SpinnerService } from '../../../services/spinner.service';
 import { CommonModule } from '@angular/common';
 import { PideService } from '../../../services/pide.service';
-import { ResultMessageService } from '../../../services/result-message.service';
 import { SweetAlertService } from '../../../services/sweet-alert.service';
+import { InputSearchComponent } from "../../../components/input-search/input-search.component";
 
 interface DatosPersona {
   apPrimer: string;
@@ -19,7 +18,7 @@ interface DatosPersona {
 
 @Component({
   selector: 'app-reniec',
-  imports: [CommonModule],
+  imports: [CommonModule, InputSearchComponent],
   templateUrl: './reniec.component.html',
   styleUrl: './reniec.component.css'
 })
@@ -50,6 +49,8 @@ export default class ReniecComponent {
    * @throws Si el codeResult es diferente de 0000, devuelve null y errorMessage
    */
   getReniec(query: string) {
+    console.log('query? ', query);
+    
     const post = {
       nuDniConsulta: query
     };

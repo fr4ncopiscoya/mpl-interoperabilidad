@@ -6,6 +6,7 @@ import jsPDF from 'jspdf';
 import { h } from 'gridjs';
 import { GridService } from '../../../../services/grid.service';
 import { CommonModule } from '@angular/common';
+import { InputSearchComponent } from "../../../../components/input-search/input-search.component";
 
 interface Asiento {
   idImgAsiento: number;
@@ -34,7 +35,7 @@ interface PaginaRef {
 
 @Component({
   selector: 'app-partida',
-  imports: [ModalComponent, CommonModule],
+  imports: [ModalComponent, CommonModule, InputSearchComponent],
   templateUrl: './partida.component.html'
 })
 export default class PartidaComponent {

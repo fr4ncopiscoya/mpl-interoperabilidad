@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-input-search',
@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class InputSearchComponent {
 
+  title = input<string>('');
+  subTitle = input<string>('');
+  maxLenght = input<string>();
+  placeholder = input<string>();
+  value = output<string>();
 }

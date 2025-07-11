@@ -6,9 +6,16 @@
       </div>
       <div class="">
             <div class="row mb-sm-4">
-
                   <div class="col-lg-6 col-12">
-                        <div class="card bg-primary text-white border-0">
+                        <app-input-search 
+                              placeholder="Ingresar CEE..."
+                              title="Consulta Aqui!"
+                              subTitle="Persona con documento de extranjería"
+                              maxLenght="9"
+                              (value)="getCExtranjeria($event)">
+                        </app-input-search>
+
+                        <!-- <div class="card bg-primary text-white border-0">
                               <div class="card-body">
                                     <div class="row gy-3">
                                           <div class="col-sm">
@@ -26,7 +33,7 @@
                                           </div>
                                     </div>
                               </div>
-                        </div>
+                        </div> -->
                         <!-- end card -->
                   </div>
 

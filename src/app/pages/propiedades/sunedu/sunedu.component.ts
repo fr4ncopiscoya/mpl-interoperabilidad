@@ -3,11 +3,12 @@ import { PideService } from '../../../services/pide.service';
 import { Grid } from 'gridjs';
 import { GridService } from '../../../services/grid.service';
 import { SweetAlertService } from '../../../services/sweet-alert.service';
+import { InputSearchComponent } from "../../../components/input-search/input-search.component";
 
 @Component({
   selector: 'app-sunedu',
   standalone: true,
-  imports: [],
+  imports: [InputSearchComponent],
   templateUrl: './sunedu.component.html',
   styleUrls: [
     './sunedu.component.css',
