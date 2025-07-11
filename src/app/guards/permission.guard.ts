@@ -14,9 +14,6 @@ export const permissionGuard: CanActivateFn = (route, state) => {
     currentPath.startsWith(menu.RUTA) && menu.ESTATUS === 1 // se usó starsWith porque en SUNARP hay rutas que son agregadas y no vienen dende la DB
   );
 
-  console.log('tienePermiso: ', hasPermission);
-
-
   if (hasPermission) {
     return true;
   } else {

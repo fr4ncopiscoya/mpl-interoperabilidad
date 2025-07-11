@@ -38,7 +38,6 @@ interface PaginaRef {
   selector: 'app-bienes',
   imports: [CommonModule, ModalComponent],
   templateUrl: './bienes.component.html',
-  styleUrl: './bienes.component.css'
 })
 export default class BienesComponent {
 
@@ -282,7 +281,6 @@ export default class BienesComponent {
         if (imgResult) {
           this.baseToImage = `data:image/jpeg;base64,${imgResult}`;
         }
-        console.log('base64', imgResult);
 
       },
       error: (err) => {
@@ -347,7 +345,6 @@ export default class BienesComponent {
             personas.length === 0 ||
             this.isEmptyArrayOfEmptyObjects(personas)
           ) {
-            console.log('No hay datos');
             this.sweetAlertService.error('Sin resultados', 'No se encontraron datos en la busqueda');
             this.dataBienes.set([]);
             return;
@@ -372,7 +369,6 @@ export default class BienesComponent {
           this.dataBienes.set(formatted);
           this.sweetAlertService.success('RESULTADO', 'Busqueda satisfactoria');
         } else {
-          console.log('mensaje de error recibido');
           this.dataBienes.set([]);
           this.sweetAlertService.error('ERROR', message);
         }

@@ -30,16 +30,11 @@ export default class CredencialesComponent {
       nuDni: this.nuDni()
     };
 
-    console.log('post: ', post);
-
-
     this.pideService.updateReniecCredentials(post).subscribe({
       next: (res) => {
         const codigo = res.actualizarcredencialResponse.return.coResultado;
-        console.log('codigo? ', codigo, typeof (codigo));
 
         const message = res.actualizarcredencialResponse.return.deResultado;
-        console.log('message: ', message);
 
         if (codigo !== '0000') {
           this.sweetAlertService.error('ERROR', message);

@@ -6,7 +6,6 @@ import { SweetAlertService } from '../../../services/sweet-alert.service';
   selector: 'app-judiciales',
   imports: [],
   templateUrl: './judiciales.component.html',
-  styleUrl: './judiciales.component.css'
 })
 export default class JudicialesComponent {
 

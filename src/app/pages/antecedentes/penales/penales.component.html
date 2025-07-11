@@ -1,1 +1,56 @@
-<p>penales works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between mb-2">
+            <h4 class="mb-sm-0">ANTECEDENTES JUDICIALES</h4>
+        </div>
+    </div>
+    <!-- <div class=""> -->
+    <div class="row mb-sm-4">
+        <div class="col-md-4">
+            <label class="form-label">N° DNI</label>
+            <input type="text" class="form-control" [value]="nuDni()"
+                (input)="nuDni.set($any($event.target).value.toUpperCase())">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Ap.Paterno</label>
+            <input type="text" class="form-control" [value]="apePaterno()"
+                (input)="apePaterno.set($any($event.target).value.toUpperCase())">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Ap.Materno</label>
+            <input type="text" class="form-control" [value]="apeMaterno()"
+                (input)="apeMaterno.set($any($event.target).value.toUpperCase())">
+        </div>
+    </div>
+
+    <div class="row mb-sm-4">
+        <div class="col-md-4">
+            <label class="form-label">Primer Nombre</label>
+            <input type="text" class="form-control" [value]="primer_nombre()"
+                (input)="primer_nombre.set($any($event.target).value.toUpperCase())">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Segundo Nombre</label>
+            <input type="text" class="form-control" [value]="segundo_nombre()"
+                (input)="segundo_nombre.set($any($event.target).value.toUpperCase())">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Tercer Nombre</label>
+            <input type="text" class="form-control" [value]="tercer_nombre()"
+                (input)="tercer_nombre.set($any($event.target).value.toUpperCase())">
+        </div>
+    </div>
+
+    <div class="row mb-sm-4">
+        <div class="col-sm-2 w-auto">
+            <button type="button" class="btn btn-primary btn-label" (click)="searchAntPenales()">
+                <i class="ri-search-line label-icon align-middle fs-16 me-2"></i> Enviar
+            </button>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-success btn-label" (click)="resetFields()">
+                <i class="ri-brush-2-line label-icon align-middle fs-16 me-2"></i> Limpiar
+            </button>
+        </div>
+    </div>
+</div>

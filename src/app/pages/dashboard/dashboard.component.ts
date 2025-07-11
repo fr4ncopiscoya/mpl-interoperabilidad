@@ -7,7 +7,6 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-dashboard',
   imports: [MenuComponent, NavbarComponent, RouterOutlet],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
 })
 export default class DashboardComponent {
 

@@ -8,7 +8,6 @@ import { SweetAlertService } from '../../../services/sweet-alert.service';
   selector: 'app-policiales',
   imports: [CommonModule],
   templateUrl: './policiales.component.html',
-  styleUrl: './policiales.component.css'
 })
 export default class PolicialesComponent {
 
@@ -119,8 +118,6 @@ export default class PolicialesComponent {
         const dataRaw = res.consultarPersonaNomPatMatResponse?.RespuestaPersona || {};
         const data = Array.isArray(dataRaw) ? dataRaw : [dataRaw];
 
-        console.log('data? ', data);
-
 
         const formatted = data.map((p: any) => [
           p.tipoDocumento || '',
@@ -138,9 +135,6 @@ export default class PolicialesComponent {
           p.sexo || '',
           p.talla || '',
         ])
-
-        console.log('forrmatted? ', formatted);
-
 
         this.dataAntecedentes.set(formatted);
 
@@ -189,8 +183,6 @@ export default class PolicialesComponent {
         ])
 
         this.dataAntecedentes.set(formatted);
-
-        console.log('data: ', data);
       },
       error: (error) => {
         console.log('error: ', error);

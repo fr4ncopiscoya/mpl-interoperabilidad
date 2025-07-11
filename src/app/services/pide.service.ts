@@ -33,7 +33,6 @@ export class PideService {
 
 
   loginAuth(data:any){
-    console.log('data:', data);
     return this.http.post(`${environment.apiBackend}/pide/login`, data);
   }
   getAreas(data: any): Observable<any> {
@@ -100,5 +99,9 @@ export class PideService {
 
   getAJudiciales(data: any): Observable<any> {
     return this.http.post(`${environment.apiBackend}/pide/sel-ant-judicial`, data);
+  }
+
+  getAPenales(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/sel-ant-penales`, data);
   }
 }

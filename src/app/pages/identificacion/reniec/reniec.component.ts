@@ -49,8 +49,6 @@ export default class ReniecComponent {
    * @throws Si el codeResult es diferente de 0000, devuelve null y errorMessage
    */
   getReniec(query: string) {
-    console.log('query? ', query);
-    
     const post = {
       nuDniConsulta: query
     };

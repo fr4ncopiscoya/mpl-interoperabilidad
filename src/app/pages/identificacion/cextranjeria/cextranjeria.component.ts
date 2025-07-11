@@ -16,7 +16,6 @@ interface DatosPersona {
   selector: 'app-cextranjeria',
   imports: [InputSearchComponent],
   templateUrl: './cextranjeria.component.html',
-  styleUrl: './cextranjeria.component.css'
 })
 export default class CextranjeriaComponent {
 
@@ -32,7 +31,6 @@ export default class CextranjeriaComponent {
     if (query.length === 9) {
       this.pideService.getCarnetExtranjeria(post).subscribe({
         next: (res) => {
-          console.log('result ', res);
           const codigo = res.codRespuesta;
           const message = res.desRespuesta;
 

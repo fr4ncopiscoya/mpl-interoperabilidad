@@ -8,7 +8,6 @@ import { SessionService } from '../../services/session.service';
   selector: 'app-login',
   imports: [ToastComponent],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
 })
 export default class LoginComponent {
 
@@ -48,20 +47,19 @@ export default class LoginComponent {
 
     this.pideService.loginAuth(post).subscribe({
       next: (res: any) => {
-        console.log('res: ', res);
         const code = res.codigo;
         const message = res.mensaje;
 
         switch (code) {
           case 0:
             this.toastComponent.showToast(message, 'success');
-            // console.log('auth???', this.pideService.p_user_auth());
 
             this.session.user_id.set(res.id_usuario);
             this.session.user_name.set(res.username);
             this.session.menus.set(res.menus);
-            // Guardamos en localStorage que está logueado
-            localStorage.setItem('session-dashboard', 'true');
+
+            // Guardar en localStorage que está logueado
+            localStorage.setItem('session-dashboard', 'true'); //con esto valida permiso de ruta
             localStorage.setItem('user-id', res.id_usuario);
             localStorage.setItem('username', res.username);
             localStorage.setItem('menus', JSON.stringify(res.menus));

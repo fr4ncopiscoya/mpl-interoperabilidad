@@ -87,13 +87,10 @@ export default class GestionComponent {
 
     this.pideService.insertUser(post).subscribe({
       next: (res) => {
-        console.log('result: ', res);
         const message = res.message;
         this.sweetAlertService.success('', message);
-        // setTimeout(() => {
         this.addUserModal.close();
         this.getUsers();
-        // }, 100);
       },
       error: (error) => {
         this.sweetAlertService.error('ERROR', 'Ocurrió un error');

@@ -11,14 +11,12 @@ import { InputSearchComponent } from "../../../components/input-search/input-sea
   imports: [InputSearchComponent],
   templateUrl: './sunedu.component.html',
   styleUrls: [
-    './sunedu.component.css',
     "../../../../assets/libs/gridjs/theme/mermaid.min.css"
   ]
 })
 export default class SuneduComponent {
 
   DATATABLE_ID = 'table-card';
-  // message: string = 'NO HAY RESULTADOS';
 
   columns = signal<string[]>([]);
   dataSunedu = signal<any[][]>([]);

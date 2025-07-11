@@ -38,12 +38,8 @@
               "/src/assets/libs/gridjs/gridjs.umd.js",
               "/src/assets/js/layout.js",
               "/src/assets/libs/simplebar/simplebar.min.js",
-              "/src/assets/libs/leaflet/leaflet.js",
-              "/src/assets/libs/jsvectormap/js/jsvectormap.min.js",
               "/src/assets/libs/bootstrap/js/bootstrap.bundle.min.js",
-              "/src/assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js",
-              "/src/assets/js/plugins.js",
-              "/src/assets/libs/multi.js/multi.min.js"
+              "/src/assets/js/plugins.js"
             ]
           },
           "configurations": {

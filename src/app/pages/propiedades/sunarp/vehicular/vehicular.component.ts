@@ -27,7 +27,6 @@ export interface Vehiculo {
   selector: 'app-vehicular',
   imports: [],
   templateUrl: './vehicular.component.html',
-  styleUrl: './vehicular.component.css'
 })
 export default class VehicularComponent {
 
