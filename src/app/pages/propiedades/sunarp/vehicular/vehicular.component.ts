@@ -1,6 +1,7 @@
 import { Component, computed, signal } from '@angular/core';
 import { PideService } from '../../../../services/pide.service';
 import { SweetAlertService } from '../../../../services/sweet-alert.service';
+import { InputSearchComponent } from "../../../../components/input-search/input-search.component";
 
 export interface Propietario {
   nombre: string;
@@ -25,7 +26,7 @@ export interface Vehiculo {
 
 @Component({
   selector: 'app-vehicular',
-  imports: [],
+  imports: [InputSearchComponent],
   templateUrl: './vehicular.component.html',
 })
 export default class VehicularComponent {
