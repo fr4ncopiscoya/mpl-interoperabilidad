@@ -36,8 +36,8 @@ export class SessionService {
     this.user_name.set('');
     this.menus.set([])
     localStorage.clear();
-    setTimeout(() => {
-      this.route.navigate(['/login']);
-    }, 1000);
+    this.route.navigate(['/login']);
+    // setTimeout(() => {
+    // }, 1000);
   }
 }

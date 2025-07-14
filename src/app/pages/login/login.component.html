@@ -30,24 +30,31 @@
                                         <span class="input-group-text" id="basic-addon1"><i
                                                 class="ri-user-3-line"></i></span>
                                         <input type="text" class="form-control" id="username"
-                                            placeholder="Ingresa tu usuario" #txtUsername>
+                                            placeholder="Ingresar usuario..." #txtUsername>
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="password-input">Contraseña</label>
                                     <div class="position-relative auth-pass-inputgroup mb-3">
-                                        <input type="password" class="form-control pe-5 password-input"
-                                            placeholder="Ingrese contraseña" id="password-input" #txtPassword>
 
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="ri-lock-2-line"></i></span>
+                                            <input type="password" class="form-control pe-5 password-input"
+                                                placeholder="Ingresar contraseña..." id="password-input" #txtPassword>
+                                            <button
+                                                class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                                                type="button" id="password-addon" (click)="togglePassword()"><i
+                                                    id="passwordEye" class="ri-eye-fill align-middle"></i></button>
+                                        </div>
+
+                                        <!-- <input type="password" class="form-control pe-5 password-input"
+                                            placeholder="Ingrese contraseña" id="password-input" #txtPassword>
                                         <button
                                             class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                             type="button" id="password-addon" (click)="togglePassword()"><i
-                                                id="passwordEye" class="ri-eye-fill align-middle"></i></button>
-                                        <!-- <button
-                                                            class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                                            type="button" id="password-addon"><i
-                                                            class="ri-eye-fill align-middle"></i></button> -->
+                                                id="passwordEye" class="ri-eye-fill align-middle"></i></button> -->
                                     </div>
                                 </div>
 
