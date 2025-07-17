@@ -39,7 +39,7 @@ export default class ReniecComponent {
     if (data?.foto) {
       return `data:image/jpeg;base64,${data.foto}`;
     }
-    return '../../../../assets/images/avatar2.png';
+    return 'assets/images/avatar2.png';
   }
 
   /**
