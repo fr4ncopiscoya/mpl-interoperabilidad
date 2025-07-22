@@ -13,6 +13,7 @@
                               title="Consulta Aqui!"
                               subTitle="Persona registrada en la Reniec"
                               maxLenght="8"
+                              [inputType]="'numeric'"
                               (value)="getReniec($event)">
                         </app-input-search>
 
@@ -49,12 +50,12 @@
                                     <h4 class="card-title mb-0">RESULTADOS</h4>
                               </div>
                               <div class="card-body">
-                                    <div class="row">
+                                    <div class="row justify-content-evenly">
                                           <div class="content-image col-3 d-flex justify-content-center align-items-center border border-dark">
                                                 <img [src]="getFotoSrc()" class="img-fluid" alt="...">
                                           </div>
                                           <div class="col-7">
-                                                <div class="row mb-sm-9">
+                                                <div class="row mb-sm-3">
                                                       <div class="col">
                                                             <label for="valueInput" class="form-label">Nombres</label>
                                                             <input type="text" class="form-control" id="valueInput"
@@ -67,7 +68,7 @@
                                                                   [value]="dataReniec()?.apPrimer" disabled>
                                                       </div>
                                                 </div>
-                                                <div class="row mb-sm-4">
+                                                <div class="row mb-sm-3">
                                                       <div class="col">
                                                             <label for="valueInput" class="form-label">Apellido
                                                                   Materno</label>
@@ -81,7 +82,7 @@
                                                                   [value]="dataReniec()?.estadoCivil" disabled>
                                                       </div>
                                                 </div>
-                                                <div class="row mb-sm-4">
+                                                <div class="row mb-sm-3">
                                                       <div class="col">
                                                             <label for="valueInput" class="form-label">Ubigeo</label>
                                                             <input type="text" class="form-control" id="valueInput"
@@ -94,7 +95,7 @@
                                                                   [value]="dataReniec()?.restriccion" disabled>
                                                       </div>
                                                 </div>
-                                                <div class="row mb-sm-4">
+                                                <div class="row mb-sm-3">
                                                       <div class="col">
                                                             <label for="valueInput" class="form-label">Dirección</label>
                                                             <input type="text" class="form-control" id="valueInput"
