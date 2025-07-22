@@ -8,6 +8,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // For [(ngModel)]
 import { SweetAlertService } from '../../../services/sweet-alert.service';
 
+interface Area {
+  id_area: number;
+  nombre: string;
+}
+
 @Component({
   selector: 'app-gestion',
   imports: [AlertModalComponent, ModalComponent, CommonModule, FormsModule],
@@ -35,7 +40,7 @@ export default class GestionComponent {
 
   dataUsers = signal<any | null>(null);
   dataMenus = signal<any | null>(null);
-  dataAreas = signal<any | null>(null);
+  dataAreas = signal<Area[]>([]);
 
   //Data usuario insert / edit
 
@@ -60,7 +65,6 @@ export default class GestionComponent {
     private sweetAlertService: SweetAlertService,
   ) {
     this.getAreas();
-    // this.getMenus();
     this.getUsers();
     effect(() => {
       const data = this.dataUsers();
@@ -201,8 +205,8 @@ export default class GestionComponent {
       { name: "Nombres" },
       { name: "Apellidos" },
       { name: "Usuario" },
+      { name: "Área" },
       { name: "Correo" },
-      // { name: "Agregado" },
       {
         name: "Estado",
         formatter: (cell: string) => {
@@ -213,8 +217,7 @@ export default class GestionComponent {
       {
         name: "Acciones",
         formatter: (cell: string, row: any) => {
-
-          const index = row.cells[6].data;
+          const index = row.cells[7].data;
           const item = self.dataRow[index];
 
           return h('div', { className: 'text-end d-flex gap-1' }, [
@@ -229,33 +232,43 @@ export default class GestionComponent {
               title: 'Editar módulo',
               onclick: () => self.openModulosModal(item),
             }, h('i', { className: 'bi bi-list-check' })),
-          ])
+          ]);
         }
       }
     ]);
 
     this.pideService.getAllUsers('').subscribe({
       next: (res) => {
-        const dataRaw = res
-        const data = Array.isArray(dataRaw) ? dataRaw : [dataRaw]
+        const dataRaw = res;
+        const data = Array.isArray(dataRaw) ? dataRaw : [dataRaw];
         this.dataRow = data;
 
-        const formattedTable = data.map((i: any, index) => [
-          i.ID || '',
-          i.NOMBRE || '',
-          i.APELLIDOS || '',
-          i.USUARIO || '',
-          i.CORREO || '',
-          // i.FECHA_REGISTRO || '',
-          i.ESTATUS == '1' ? 'ACTIVO' : 'INACTIVO',
-          index
-        ])
+        const areas = this.dataAreas(); // accede al signal ya tipado
+
+        const formattedTable = data.map((i: any, index) => {
+          const area = areas.find(a => a.id_area === i.AREA);
+          const areaNombre = area ? area.nombre : 'Sin área';
+
+          return [
+            i.ID || '',
+            i.NOMBRE || '',
+            i.APELLIDOS || '',
+            i.USUARIO || '',
+            areaNombre,
+            i.CORREO || '',
+            i.ESTATUS == '1' ? 'ACTIVO' : 'INACTIVO',
+            index
+          ];
+        });
+
         this.dataUsers.set(formattedTable);
       },
       error: (error) => {
         console.log('error: ', error);
       }
-    })
+    });
   }
+
+
 
 }
