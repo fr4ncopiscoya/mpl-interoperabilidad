@@ -27,6 +27,10 @@ export class PideService {
     return this.http.post(`${environment.apiBackend}/pide/upd-reniec-credentials`, data);
   }
 
+  updatePasswordUser(data: any): Observable<any> {
+    return this.http.post(`${environment.apiBackend}/pide/upd-password-user`, data);
+  }
+
 
 
 
