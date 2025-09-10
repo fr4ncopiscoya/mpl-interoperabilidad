@@ -60,13 +60,13 @@ export default class BienesComponent {
   columns = signal<any[]>([]);
   columnsPartida = signal<any[]>([]);
 
-  dataBienes = signal<any[][]>([])
+  dataBienes = signal<any[][]>([]);
 
   tipoPersona = signal<string>('N');
   apePaterno = signal<string>('');
   apeMaterno = signal<string>('');
   nombres = signal<string>('');
-  razSocial = signal<string>('')
+  razSocial = signal<string>('');
   dataPerNatural = signal(null);
 
   numPartida: number | null = null;

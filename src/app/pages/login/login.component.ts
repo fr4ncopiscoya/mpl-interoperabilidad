@@ -3,10 +3,12 @@ import { PideService } from '../../services/pide.service';
 import { ToastComponent } from '../../components/toast/toast.component';
 import { Router } from '@angular/router';
 import { SessionService } from '../../services/session.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ToastComponent],
+  imports: [ToastComponent, FormsModule, CommonModule],
   templateUrl: './login.component.html',
 })
 export default class LoginComponent {
@@ -17,6 +19,9 @@ export default class LoginComponent {
 
   private pideService = inject(PideService);
   private session = inject(SessionService);
+
+  username = signal<string>('');
+  password = signal<string>('');
 
   USERNAME = signal<string>('');
 
@@ -35,14 +40,14 @@ export default class LoginComponent {
     }
   }
 
-  login(username: string, password: string) {
+  login() {
     let btnLogin = document.getElementById('btnLoginAction') as HTMLButtonElement;
     btnLogin.innerHTML = '<span class="align-items-center"><span class="spinner-border flex-shrink-0" role="status"><span class="visually-hidden">Loading...</span></span><span class="flex-grow-1 ms-2">Ingresando...</span></span>';
     btnLogin.classList.add('pe-none', 'btn-load');
 
     const post = {
-      p_loging: username,
-      p_passwd: password
+      p_loging: this.username(),
+      p_passwd: this.password(),
     };
 
     this.pideService.loginAuth(post).subscribe({

@@ -22,63 +22,41 @@
                             </p>
                         </div>
                         <div class="p-2 mt-5">
-                            <form>
+                            <!-- <form action="https://themesbrand.com/hybrix/html/index.html"> -->
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Usuario</label>
+                                <input type="text" class="form-control" id="username" placeholder="Ingrese usuario"
+                                    [ngModel]="username()" (ngModelChange)="username.set($event)">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="password-input">Contraseña</label>
+                                <div class="position-relative auth-pass-inputgroup mb-3">
+                                    <input type="password" class="form-control pe-5 password-input"
+                                        placeholder="Ingrese contraseña" id="password-input" [ngModel]="password()"
+                                        (ngModelChange)="password.set($event)" (keyup.enter)="login()">
 
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Usuario</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1"><i
-                                                class="ri-user-3-line"></i></span>
-                                        <input type="text" class="form-control" id="username"
-                                            placeholder="Ingresar usuario..." #txtUsername>
-                                    </div>
+                                    <button
+                                        class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                                        type="button" id="password-addon" (click)="togglePassword()"><i id="passwordEye"
+                                            class="ri-eye-fill align-middle"></i></button>
+                                    <!-- <button
+                                                            class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                                                            type="button" id="password-addon"><i
+                                                            class="ri-eye-fill align-middle"></i></button> -->
                                 </div>
+                            </div>
+                            <!-- <label class="switch btn-color-mode-switch">
+                                                    <input type="checkbox" name="color_mode" id="color_mode" value="1">
+                                                    <label for="color_mode" data-on="Host" data-off="Usuario" class="btn-color-mode-switch-inner"></label>
+                                                </label> -->
 
-                                <div class="mb-3">
-                                    <label class="form-label" for="password-input">Contraseña</label>
-                                    <div class="position-relative auth-pass-inputgroup mb-3">
+                            <div class="mt-4">
+                                <button id="btnLoginAction" style="background-color: #1F5BA9;color: white;"
+                                    class="btn w-100 tc-white br-15" type="button"
+                                    (click)="login()">Ingresar</button>
+                            </div>
 
-                                        <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon1"><i
-                                                    class="ri-lock-2-line"></i></span>
-                                            <input type="password" class="form-control pe-5 password-input"
-                                                placeholder="Ingresar contraseña..." id="password-input" #txtPassword>
-                                            <button
-                                                class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                                type="button" id="password-addon" (click)="togglePassword()"><i
-                                                    id="passwordEye" class="ri-eye-fill align-middle"></i></button>
-                                        </div>
-
-                                        <!-- <input type="password" class="form-control pe-5 password-input"
-                                            placeholder="Ingrese contraseña" id="password-input" #txtPassword>
-                                        <button
-                                            class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                            type="button" id="password-addon" (click)="togglePassword()"><i
-                                                id="passwordEye" class="ri-eye-fill align-middle"></i></button> -->
-                                    </div>
-                                </div>
-
-                                <!-- <div class="mb-3">
-                                    <label class="form-label" for="password-input">Contraseña</label>
-                                    <div class="position-relative auth-pass-inputgroup overflow-hidden">
-                                        <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon1"><i
-                                                    class="ri-lock-2-line"></i></span>
-                                            <input type="password" class="form-control pe-5 password-input"
-                                                placeholder="Ingresa tu contraseña" id="password-input" #txtPassword>
-                                        </div>
-                                        <button
-                                            class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                            type="button" id="passwordEye" (click)="this.togglePassword()"><i
-                                                class="ri-eye-fill align-middle"></i></button>
-                                    </div>
-                                </div> -->
-
-                                <div class="mt-4">
-                                    <button id="btnLoginAction" class="btn btn-primary w-100" type="button"
-                                        (click)="login(txtUsername.value,txtPassword.value)">Ingresar</button>
-                                </div>
-                            </form>
+                            <!-- </form> -->
                         </div>
                     </div>
                     <!-- end card body -->
