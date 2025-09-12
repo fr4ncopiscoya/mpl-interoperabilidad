@@ -24,19 +24,28 @@ export default class JudicialesComponent {
 
   searchAntJudiciales(){
     const post = {
-      primerApellido: this.apeMaterno(),
+      primerApellido: this.apePaterno(),
       segundoApellido: this.apeMaterno(),
       nombres: this.nombres(),
     }
-
+    
     this.pideService.getAJudiciales(post).subscribe({
       next:(res)=>{
-        console.log('res: ', res);
+        const data = res.echoResponse??res;
+        const code = data.codigoError
+        const message = data.mensajeError
+        const resultado = data.resultado
+
+        if(code !== "OK"){
+          this.sweetAlertService.error('ERROR !', message)
+        }else{
+          this.sweetAlertService.success(resultado, message)
+        }
         
       },
       error:(error)=>{
         console.log('error: ', error);
-        
+        this.sweetAlertService.error('ERROR - SYSTEM!', error)
       }
     })
 
